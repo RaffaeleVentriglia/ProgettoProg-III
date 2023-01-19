@@ -1,6 +1,7 @@
 package com.project.game.controller;
 
 import com.project.game.MainPage;
+import com.project.game.model.player.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Objects;
 
@@ -23,7 +23,18 @@ public class homeController {
     @FXML
     TextField usernameField;
     @FXML
-    Label welcomeText;
+    Player player = Player.getInstance();
+
+    public static Parent root2;
+
+    static {
+        try {
+            root2 = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/gamePage.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @FXML
     protected void startGameClickHandler() throws IOException {
@@ -32,9 +43,9 @@ public class homeController {
             System.out.println("Inserire nome utente");
             errorInsert.setOpacity(1.0);
         } else {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/gamePage.fxml")));
+            player.setUsername(temp);
             Stage window = (Stage) startGameButton.getScene().getWindow();
-            window.setScene(new Scene(root,500,350));
+            window.setScene(new Scene(root2,500,350));
         }
     }
 

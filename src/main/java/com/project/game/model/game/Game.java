@@ -1,14 +1,11 @@
 package com.project.game.model.game;
 
 import com.project.game.model.board.Board;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Game {
-
     private static Game game;
-    Board board = Board.getInstance();
 
     /**
      * costruttore privato per applicare il Singleton

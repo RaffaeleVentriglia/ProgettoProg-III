@@ -8,7 +8,9 @@ public class Player {
     /**
      * costruttore privato per applicare il Singleton
      */
-    private Player() {}
+    private Player() {
+        count = 0;
+    }
 
     /**
      * metodo per attuare Singleton e ritornare l'unica istanza di player

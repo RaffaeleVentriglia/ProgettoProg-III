@@ -17,7 +17,7 @@ public class Box {
 
     /**
      * metodo per restituire la distanza di Manhattan
-     * @return
+     * @return manhattanDistance
      */
     public int getManhattanDistance() {
         return manhattanDistance;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+
+<BorderPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.game.controller.homeController">
+    <top>
+        <Label text="Benvenuto" styleClass="welcomeText" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets top="20.0" />
+            </BorderPane.margin>
+        </Label>
+    </top>
+    <center>
+        <AnchorPane>
+            <Label text="Username" styleClass="usernameText" layoutX="60" layoutY="60" />
+            <TextField promptText="Username" styleClass="usernameTextField" fx:id="usernameField" layoutX="180" layoutY="50" />
+            <Button text="Start Game" styleClass="startGameButton" fx:id="startGameButton" id="startGameButton" onAction="#startGameClickHandler" layoutX="60" layoutY="110" />
+            <Button text="General Score" styleClass="generalScoreButton" fx:id="generalScoreButton" onAction="#generalScoreClickHandler" layoutX="260" layoutY="110" />
+            <Label text="Inserire username" styleClass="errorInsert" fx:id="errorInsert" layoutX="50" layoutY="180" opacity="0.0" />
+        </AnchorPane>
+    </center>
+</BorderPane>

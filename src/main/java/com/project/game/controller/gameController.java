@@ -12,7 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +26,8 @@ import java.util.ResourceBundle;
 import static com.project.game.controller.homeController.root2;
 
 public class gameController implements Initializable {
+    @FXML
+    Pane pane16;
     @FXML
     Button generateButton;
     @FXML
@@ -54,15 +59,40 @@ public class gameController implements Initializable {
     @FXML
     protected void generateClickHandler() {
         ArrayList<Integer> initialList = game.initializeBoard();
-
-        GridPane pane = (GridPane) root2.lookup("#mainPane");
-        ObservableList<Node> children = pane.getChildren();
-
-        for (Node child : children) {
-            if (child instanceof Label label) {
-                System.out.println(label.getText());
+        int index = 0;
+        ObservableList<Node> children1 = ((GridPane) root2.lookup("#mainPane")).getChildren();
+        // itero tutto il mainPanel per impostare il testo delle label con gli elementi creati nella initialList
+        for (Node child : children1) {
+            if (child instanceof Pane) {
+                ObservableList<Node> children2 = ((Pane) child).getChildren();
+                for(Node child2 : children2) {
+                    if(child2 instanceof Label) {
+                        if(initialList.get(index).equals(0)) {
+                            ((Label) child2).setText(" ");
+                        } else {
+                            ((Label) child2).setText(initialList.get(index).toString());
+                        }
+                        index++;
+                    }
+                }
             }
         }
+
+        // itero ancora tutto il mainPanel per trovare il pannello vuoto e impostarne lo sfondo a rosso
+        for (Node child : children1) {
+            if (child instanceof Pane) {
+                ObservableList<Node> children2 = ((Pane) child).getChildren();
+                for(Node child2 : children2) {
+                    if(child2 instanceof Label) {
+                        if(Objects.equals(((Label) child2).getText(), " ")) {
+                            ((Pane) child).setBackground(Background.fill(Color.RED));
+                        }
+                    }
+                }
+            }
+        }
+        pane16.setBackground(Background.fill(Color.WHITE));
+        generateButton.setDisable(true);
     }
 
     @Override

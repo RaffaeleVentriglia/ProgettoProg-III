@@ -66,8 +66,8 @@
                         <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: lightgreen;" GridPane.columnIndex="2" GridPane.rowIndex="3">
                             <Label fx:id="pane15" text="15" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: red;" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                            <Label fx:id="pane16" layoutX="35" layoutY="32" />
+                        <Pane fx:id="pane16" prefHeight="200" prefWidth="200" style="-fx-background-color: red;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                            <Label text=" " layoutX="35" layoutY="32" />
                         </Pane>
                     </children>
                 </GridPane>

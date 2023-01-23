@@ -9,7 +9,7 @@ public class Box {
 
     /**
      * metodo per settare la distanza di Manhattan
-     * @param manhattanDistance
+     * @param manhattanDistance distanza di manhattan per ogni bottone
      */
     public void setManhattanDistance(int manhattanDistance) {
         this.manhattanDistance = manhattanDistance;

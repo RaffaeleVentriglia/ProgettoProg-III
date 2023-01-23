@@ -24,7 +24,37 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import static com.project.game.controller.homeController.root2;
 
-public class gameController implements Initializable {
+public class gameController {
+    @FXML
+    Pane pane1;
+    @FXML
+    Pane pane2;
+    @FXML
+    Pane pane3;
+    @FXML
+    Pane pane4;
+    @FXML
+    Pane pane5;
+    @FXML
+    Pane pane6;
+    @FXML
+    Pane pane7;
+    @FXML
+    Pane pane8;
+    @FXML
+    Pane pane9;
+    @FXML
+    Pane pane10;
+    @FXML
+    Pane pane11;
+    @FXML
+    Pane pane12;
+    @FXML
+    Pane pane13;
+    @FXML
+    Pane pane14;
+    @FXML
+    Pane pane15;
     @FXML
     Pane pane16;
     @FXML
@@ -41,7 +71,7 @@ public class gameController implements Initializable {
 
     /**
      * gestione del click sul bottone back per tornare alla schermata principale
-     * @throws IOException
+     * @throws IOException errori di I/O
      */
     @FXML
     protected void backClickHandler() throws IOException {
@@ -50,12 +80,18 @@ public class gameController implements Initializable {
         window.setScene(new Scene(root,500,350));
     }
 
+    /**
+     * controllore del click sul bottone solve
+     */
     @FXML
     protected void solveClickHandler() {
         System.out.println("Username: " + player.getUsername());
         System.out.println("Count: " + player.getCount());
     }
 
+    /**
+     * controllore del click sul bottone generate
+     */
     @FXML
     protected void generateClickHandler() {
         initialList = game.initializeBoard();
@@ -77,7 +113,6 @@ public class gameController implements Initializable {
                 }
             }
         }
-
         // itero ancora tutto il mainPanel per trovare il pannello vuoto e impostarne lo sfondo a rosso
         for (Node child : children1) {
             if (child instanceof Pane) {
@@ -86,17 +121,12 @@ public class gameController implements Initializable {
                     if(child2 instanceof Label) {
                         if(Objects.equals(((Label) child2).getText(), " ")) {
                             ((Pane) child).setBackground(Background.fill(Color.RED));
+                            pane16.setBackground(Background.fill(Color.LIGHTGREEN));
                         }
                     }
                 }
             }
         }
-        pane16.setBackground(Background.fill(Color.WHITE));
         generateButton.setDisable(true);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

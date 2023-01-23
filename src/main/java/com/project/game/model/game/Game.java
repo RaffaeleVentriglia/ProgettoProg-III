@@ -1,6 +1,5 @@
 package com.project.game.model.game;
 
-import com.project.game.model.board.Board;
 import java.util.ArrayList;
 import java.util.Collections;
 

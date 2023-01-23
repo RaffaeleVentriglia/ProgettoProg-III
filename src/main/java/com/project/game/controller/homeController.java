@@ -24,31 +24,32 @@ public class homeController {
     TextField usernameField;
     @FXML
     Player player = Player.getInstance();
-
     public static Parent root2;
 
-    static {
-        try {
-            root2 = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/gamePage.fxml")));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
+    /**
+     * controllore del click sul bottone start game
+     */
     @FXML
     protected void startGameClickHandler() {
         String temp = usernameField.getText();
         if(temp.isEmpty()) {
-            System.out.println("Inserire nome utente");
             errorInsert.setOpacity(1.0);
         } else {
+            try {
+                root2 = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/gamePage.fxml")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             player.setUsername(temp);
             Stage window = (Stage) startGameButton.getScene().getWindow();
             window.setScene(new Scene(root2,500,350));
         }
     }
 
+    /**
+     * controllore del click sul pulsante general score
+     * @throws IOException errori di I/O
+     */
     @FXML
     protected void generalScoreClickHandler() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/generalScorePage.fxml")));

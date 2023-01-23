@@ -25,7 +25,7 @@ public class Player {
 
     /**
      * metodo set per username
-     * @param username
+     * @param username nome del giocatore
      */
     public void setUsername(String username) {
         this.username = username;
@@ -33,7 +33,7 @@ public class Player {
 
     /**
      * metodo set per count
-     * @param count
+     * @param count conta il numero di mosse
      */
     public void setCount(int count) {
         this.count = count;

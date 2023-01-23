@@ -1,10 +1,23 @@
 package com.project.game.model.game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+
+/**
+ * commento per vari ragionamenti
+ *
+ * gestire l'intero carico del gioco da questa classe, soprattutto il movimento dei numeri tra le varie caselle,
+ * mentre nella gameController spostare semplicemente le caselle graficamente
+ */
+
 
 public class Game {
     private static Game game;
+    private final List<Integer> num = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0);
+    private final ArrayList<Integer> finalList = new ArrayList<>();
+    public ArrayList<Integer> initialList = new ArrayList<>(16);
 
     /**
      * costruttore privato per applicare il Singleton
@@ -23,10 +36,9 @@ public class Game {
     }
 
     /**
-     * metodo che crea
+     * metodo che crea la board
      */
     public ArrayList<Integer> initializeBoard() {
-        ArrayList<Integer> initialList = new ArrayList<>(16);
         for(boolean isSolvable = false; !isSolvable;) {
             // creo la lista ordinata
             initialList = new ArrayList<>(16);
@@ -44,8 +56,8 @@ public class Game {
 
     /**
      * funzione che permette di controllare se il puzzle creato è risolvibile o meno
-     * @param list
-     * @return
+     * @param list lista contenente i numeri generati
+     * @return vero se risolvibile, falso se non lo è
      */
     private boolean isSolvable(ArrayList<Integer> list) {
         if (list.size() != 16) {
@@ -76,4 +88,8 @@ public class Game {
         return inversionSum % 2 == 0;
     }
 
+    private boolean isFinished() {
+        finalList.addAll(num);
+        return initialList.equals(finalList);
+    }
 }

@@ -37,7 +37,7 @@ public class homeController {
 
 
     @FXML
-    protected void startGameClickHandler() throws IOException {
+    protected void startGameClickHandler() {
         String temp = usernameField.getText();
         if(temp.isEmpty()) {
             System.out.println("Inserire nome utente");

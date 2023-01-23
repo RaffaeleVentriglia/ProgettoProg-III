@@ -1,6 +1,6 @@
 package com.project.game.controller;
-import com.project.game.MainPage;
 
+import com.project.game.MainPage;
 import com.project.game.model.game.Game;
 import com.project.game.model.player.Player;
 import javafx.collections.ObservableList;
@@ -22,7 +22,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
 import static com.project.game.controller.homeController.root2;
 
 public class gameController implements Initializable {
@@ -38,6 +37,7 @@ public class gameController implements Initializable {
     Button backButton;
     Game game = Game.getInstance();
     Player player = Player.getInstance();
+    ArrayList<Integer>  initialList;
 
     /**
      * gestione del click sul bottone back per tornare alla schermata principale
@@ -58,7 +58,7 @@ public class gameController implements Initializable {
 
     @FXML
     protected void generateClickHandler() {
-        ArrayList<Integer> initialList = game.initializeBoard();
+        initialList = game.initializeBoard();
         int index = 0;
         ObservableList<Node> children1 = ((GridPane) root2.lookup("#mainPane")).getChildren();
         // itero tutto il mainPanel per impostare il testo delle label con gli elementi creati nella initialList

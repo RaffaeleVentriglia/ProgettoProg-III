@@ -1,57 +1,30 @@
 package com.project.game.model.player;
 
+import com.project.game.model.db.DataBase;
+
 public class Player {
-    String username;
-    int count;
-    private static Player player;
+    DataBase db = DataBase.getInstance();
+    private static final PlayerBean player = new PlayerBean();
 
     /**
-     * costruttore privato per applicare il Singleton
+     * costruttore del player
+     * @param username del giocatore
+     * @param count di passi effettuati
      */
-    private Player() {
-        count = 0;
+    public Player(String username, String count) {
+        player.setUsername(username);
+        player.setCount(count);
     }
 
     /**
-     * metodo per attuare Singleton e ritornare l'unica istanza di player
-     * @return player
+     * metodo per avere l'istanza unica di player
+     * @return istanza unica di player
      */
-    public static Player getInstance() {
-        if(player == null) {
-            player = new Player();
-        }
+    public static PlayerBean getInstance() {
         return player;
     }
 
-    /**
-     * metodo set per username
-     * @param username nome del giocatore
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void addVictory() {
 
-    /**
-     * metodo set per count
-     * @param count conta il numero di mosse
-     */
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    /**
-     * metodo get per ritornare username
-     * @return username
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * metodo get per ritornare count
-     * @return count
-     */
-    public int getCount() {
-        return count;
     }
 }

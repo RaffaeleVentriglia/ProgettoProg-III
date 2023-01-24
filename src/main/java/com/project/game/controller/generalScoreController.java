@@ -1,7 +1,8 @@
 package com.project.game.controller;
 
 import com.project.game.MainPage;
-import com.project.game.model.player.Player;
+import com.project.game.model.db.DataBase;
+import com.project.game.model.player.PlayerBean;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,11 +22,12 @@ public class generalScoreController implements Initializable {
     @FXML
     Button backButton;
     @FXML
-    TableView<Player> score;
+    TableView<PlayerBean> score;
     @FXML
-    TableColumn<Player, String> usernameColumn;
+    TableColumn<PlayerBean, String> usernameColumn;
     @FXML
-    TableColumn<Player, Integer> countColumn;
+    TableColumn<PlayerBean, Integer> countColumn;
+    DataBase db = DataBase.getInstance();
 
     /**
      * controllore del click sul bottone back
@@ -49,5 +51,6 @@ public class generalScoreController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         countColumn.setCellValueFactory(new PropertyValueFactory<>("count"));
+        score.setItems(db.getScore());
     }
 }

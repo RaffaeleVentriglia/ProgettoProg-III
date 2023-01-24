@@ -3,10 +3,10 @@ package com.project.game.controller;
 import com.project.game.MainPage;
 import com.project.game.model.game.Game;
 import com.project.game.model.player.Player;
+import com.project.game.model.player.PlayerBean;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,10 +18,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.ResourceBundle;
 import static com.project.game.controller.homeController.root2;
 
 public class gameController {
@@ -66,7 +64,7 @@ public class gameController {
     @FXML
     Button backButton;
     Game game = Game.getInstance();
-    Player player = Player.getInstance();
+    PlayerBean player = Player.getInstance();
     ArrayList<Integer>  initialList;
 
     /**
@@ -87,6 +85,11 @@ public class gameController {
     protected void solveClickHandler() {
         System.out.println("Username: " + player.getUsername());
         System.out.println("Count: " + player.getCount());
+        /*
+        while(!game.isFinished()) {
+            game.makeMove();
+        }
+         */
     }
 
     /**

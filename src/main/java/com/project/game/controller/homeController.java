@@ -2,6 +2,7 @@ package com.project.game.controller;
 
 import com.project.game.MainPage;
 import com.project.game.model.player.Player;
+import com.project.game.model.player.PlayerBean;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +24,7 @@ public class homeController {
     @FXML
     TextField usernameField;
     @FXML
-    Player player = Player.getInstance();
+    PlayerBean player = Player.getInstance();
     public static Parent root2;
 
     /**

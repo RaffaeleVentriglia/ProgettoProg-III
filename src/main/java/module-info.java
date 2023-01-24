@@ -3,6 +3,7 @@ module com.project.game {
     requires javafx.fxml;
 
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens com.project.game to javafx.fxml;
     exports com.project.game;

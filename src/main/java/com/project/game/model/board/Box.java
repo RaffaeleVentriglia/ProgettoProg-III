@@ -6,6 +6,8 @@ package com.project.game.model.board;
  */
 public class Box {
     int manhattanDistance;
+    int value;
+    int x, y;
 
     /**
      * metodo per settare la distanza di Manhattan

@@ -88,8 +88,12 @@ public class Game {
         return inversionSum % 2 == 0;
     }
 
-    private boolean isFinished() {
+    public boolean isFinished() {
         finalList.addAll(num);
         return initialList.equals(finalList);
+    }
+
+    public void makeMove() {
+
     }
 }

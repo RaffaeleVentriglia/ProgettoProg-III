@@ -41,8 +41,8 @@ public class generalScoreController implements Initializable {
     }
 
     /**
-     * metodo che attraverso l'uso dell'interfaccia initialize permette di inizializzare le variabili
-     * della tabella che permette di visualizzare la classifica dei migliori 5 utilizzando
+     * metodo che attraverso l'uso dell'interfaccia initialize permette d'inizializzare le variabili
+     * della tabella che permette di visualizzare la classifica dei migliori CINQUE utilizzando
      * dati presi dal database (username e count)
      * @param url
      * @param resourceBundle

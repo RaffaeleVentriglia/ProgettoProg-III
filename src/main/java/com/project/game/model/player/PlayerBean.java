@@ -1,15 +1,16 @@
 package com.project.game.model.player;
 
 public class PlayerBean implements java.io.Serializable {
-    private String username;
-    private String count;
+    public String username;
+    public String count;
 
     /**
-     * costruttore usato per impostare il valore iniziale di count a 0
-     * per ogni istanza di plauer
+     * costruttore usato per impostare il valore
+     * iniziale di count a ZERO per ogni istanza di player
      */
     public PlayerBean() {
         count = String.valueOf(0);
+        username = null;
     }
 
     /**

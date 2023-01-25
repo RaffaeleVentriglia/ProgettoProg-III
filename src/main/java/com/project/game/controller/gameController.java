@@ -65,7 +65,7 @@ public class gameController {
     Button backButton;
     Game game = Game.getInstance();
     PlayerBean player = Player.getInstance();
-    ArrayList<Integer>  initialList;
+    ArrayList<Integer> initialList;
 
     /**
      * gestione del click sul bottone back per tornare alla schermata principale

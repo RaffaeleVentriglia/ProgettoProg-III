@@ -23,7 +23,6 @@ public class homeController {
     Button startGameButton;
     @FXML
     TextField usernameField;
-    @FXML
     PlayerBean player = Player.getInstance();
     public static Parent root2;
 

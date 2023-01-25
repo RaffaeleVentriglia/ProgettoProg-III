@@ -43,14 +43,13 @@ public class DataBase {
         try {
             con = DriverManager.getConnection(url);
             System.out.println("Connessione al database eseguita con successo.");
-            PreparedStatement preparedStatement = con.prepareStatement("SELECT username, count FROM player ORDER BY count DESC LIMIT 5");
+            PreparedStatement preparedStatement = con.prepareStatement("SELECT username, count FROM player ORDER BY count LIMIT 5");
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()) {
-                System.out.println(resultSet.getString(1) + resultSet.getString(2));
                 username = resultSet.getString(1);
                 count = resultSet.getString(2);
-                new Player(username, count);
-                observableList.add(Player.getInstance());
+                PlayerBean pp = new PlayerBean(username, count);
+                observableList.add(pp);
             }
             return observableList;
         } catch (SQLException e) {

@@ -5,12 +5,18 @@ public class PlayerBean implements java.io.Serializable {
     public String count;
 
     /**
-     * costruttore usato per impostare il valore
-     * iniziale di count a ZERO per ogni istanza di player
+     * costruttore senza parametri
      */
-    public PlayerBean() {
-        count = String.valueOf(0);
-        username = null;
+    public PlayerBean() {}
+
+    /**
+     * costruttore con parametri
+     * @param username del player
+     * @param count di passi effettuati
+     */
+    public PlayerBean(String username, String count) {
+        this.username = username;
+        this.count = count;
     }
 
     /**

@@ -64,7 +64,6 @@ public class gameController {
     @FXML
     Button backButton;
     Game game = Game.getInstance();
-    PlayerBean player = Player.getInstance();
     ArrayList<Integer> initialList;
 
     /**
@@ -83,8 +82,6 @@ public class gameController {
      */
     @FXML
     protected void solveClickHandler() {
-        System.out.println("Username: " + player.getUsername());
-        System.out.println("Count: " + player.getCount());
         /*
         while(!game.isFinished()) {
             game.makeMove();

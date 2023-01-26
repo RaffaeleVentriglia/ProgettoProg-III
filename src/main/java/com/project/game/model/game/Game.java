@@ -1,5 +1,6 @@
 package com.project.game.model.game;
 
+import com.project.game.model.algorithm.Game15Solver;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,6 +11,9 @@ import java.util.List;
  *
  * gestire l'intero carico del gioco da questa classe, soprattutto il movimento dei numeri tra le varie caselle,
  * mentre nella gameController spostare semplicemente le caselle graficamente
+ *
+ * risolvere il gioco prima come arrayList e a ogni passo inviare al
+ * gameController la lista in modo tale da spostare gli elementi
  */
 
 
@@ -51,6 +55,8 @@ public class Game {
             // controllo se la lista è risolvibile o no
             isSolvable = isSolvable(initialList);
         }
+
+        System.out.println(initialList);
         return initialList;
     }
 
@@ -88,12 +94,21 @@ public class Game {
         return inversionSum % 2 == 0;
     }
 
+    public void solve(ArrayList<Integer> list) {
+        int[][] listToArray = new int[4][4];
+        for (int i = 0; i < listToArray.length; i++) {
+            for (int j = 0; j < listToArray[i].length; j++) {
+                listToArray[i][j] = list.get(i * 4 + j);
+            }
+        }
+        Game15Solver.aStar(listToArray);
+    }
+
+    /*
     public boolean isFinished() {
         finalList.addAll(num);
         return initialList.equals(finalList);
     }
 
-    public void makeMove() {
-
-    }
+     */
 }

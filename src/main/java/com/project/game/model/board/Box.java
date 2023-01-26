@@ -24,4 +24,36 @@ public class Box {
     public int getManhattanDistance() {
         return manhattanDistance;
     }
+
+    /**
+     * metodo get per x
+     * @return x
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * metodo get per y
+     * @return y
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * metodo set per x
+     * @param x coordinata
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * metodo set per y
+     * @param y coordinata
+     */
+    public void setY(int y) {
+        this.y = y;
+    }
 }

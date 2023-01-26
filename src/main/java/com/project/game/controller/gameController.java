@@ -87,6 +87,7 @@ public class gameController {
             game.makeMove();
         }
          */
+        game.solve(initialList);
     }
 
     /**

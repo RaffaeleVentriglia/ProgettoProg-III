@@ -1,10 +1,9 @@
 package com.project.game.model.game;
 
-import com.project.game.model.algorithm.Game15Solver;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import com.project.game.model.board.Board;
+import com.project.game.model.board.Box;
+
+import java.util.*;
 
 /**
  * commento per vari ragionamenti
@@ -22,6 +21,8 @@ public class Game {
     private final List<Integer> num = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0);
     private final ArrayList<Integer> finalList = new ArrayList<>();
     public ArrayList<Integer> initialList = new ArrayList<>(16);
+    public ArrayList<Box> initial = new ArrayList<>(16);
+    public Board initialLIST = Board.getInstance();
 
     /**
      * costruttore privato per applicare il Singleton
@@ -55,9 +56,28 @@ public class Game {
             // controllo se la lista è risolvibile o no
             isSolvable = isSolvable(initialList);
         }
-
         System.out.println(initialList);
         return initialList;
+    }
+
+    public Board initialize() {
+        for(boolean isSolvable = false; !isSolvable;) {
+            ArrayList<Integer> num = new ArrayList<>(16);
+            for(int i = 0; i < 16; i++) {
+                num.add(i);
+            }
+            Collections.shuffle(num);
+            int index = 0;
+            for(int i = 0; i < 4; i++) {
+                for(int j = 0; j < 4; j++) {
+                    initialLIST.board[i][j].setValue(num.get(index));
+                    index++;
+                }
+            }
+            isSolvable = isSolvable2(initialLIST);
+        }
+        System.out.println(initialLIST);
+        return initialLIST;
     }
 
     /**
@@ -94,6 +114,33 @@ public class Game {
         return inversionSum % 2 == 0;
     }
 
+    private boolean isSolvable2(Board list) {
+        int inversionSum = 0;
+        for (int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                if (list.board[i][j].getValue() == 0) {
+                    inversionSum += (i + j);
+                }
+                for (int x = i; x < 4; x++) {
+                    for (int y = j; y < 4; y++) {
+                        if (list.board[i][j].getValue() > list.board[x][y].getValue() && list.board[x][y].getValue() != 0) {
+                            inversionSum++;
+                        }
+                    }
+                }
+            }
+        }
+        return inversionSum % 2 == 0;
+    }
+
+
+
+
+
+    /**
+     * metodo che permette la risoluzione del puzzle
+     * @param list ArrayList del gioco
+     */
     public void solve(ArrayList<Integer> list) {
         int[][] listToArray = new int[4][4];
         for (int i = 0; i < listToArray.length; i++) {
@@ -101,14 +148,15 @@ public class Game {
                 listToArray[i][j] = list.get(i * 4 + j);
             }
         }
-        Game15Solver.aStar(listToArray);
+        //Game15Solver.aStar(listToArray);
     }
 
-    /*
+    /**
+     * metodo che permette di controllare se il puzzle è completato
+     * @return true se risolto, false se non è risolto
+     */
     public boolean isFinished() {
         finalList.addAll(num);
         return initialList.equals(finalList);
     }
-
-     */
 }

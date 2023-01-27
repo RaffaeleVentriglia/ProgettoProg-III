@@ -1,8 +1,9 @@
 package com.project.game.model.algorithm;
 
 import com.project.game.model.board.Board;
+import com.project.game.model.board.Box;
 
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class Game15Solver {
     private static Game15Solver game15Solver;
@@ -16,13 +17,14 @@ public class Game15Solver {
         return game15Solver;
     }
 
-    public static void aStar(int[][] start) {
-        PriorityQueue<Board> queue = new PriorityQueue<>((a, b) -> (a.depth + a.manhattan()) - (b.depth + b.manhattan()));
+    /*
+    public static List<int[][]> aStar(Box[][] start) {
+        PriorityQueue<Board> queue = new PriorityQueue<>(Comparator.comparingInt(a -> (a.depth + a.manhattan())));
         int blankX = 0;
         int blankY = 0;
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (start[i][j] == 0) {
+        for (int i = 0; i < start.length; i++) {
+            for (int j = 0; j < start[i].length; j++) {
+                if (start[i][j].getValue() == 0) {
                     blankX = i;
                     blankY = j;
                     break;
@@ -33,19 +35,20 @@ public class Game15Solver {
         while (!queue.isEmpty()) {
             Board current = queue.poll();
             if (current.manhattan() == 0) {
-                current.path();
-                return;
+                return current.path();
             }
             for (Board neighbor : current.neighbors()) {
                 printMatrix(neighbor.board);
                 queue.offer(neighbor);
             }
         }
+        return null;
     }
+     */
 
-    public static void printMatrix(int[][] matrix) {
-        for (int[] ints : matrix) {
-            for (int anInt : ints) {
+    public static void printMatrix(Box[][] matrix) {
+        for (Box[] ints : matrix) {
+            for (Box anInt : ints) {
                 System.out.print(anInt + " ");
             }
             System.out.println();

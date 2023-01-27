@@ -1,9 +1,9 @@
 package com.project.game.controller;
 
 import com.project.game.MainPage;
+import com.project.game.model.board.Board;
+import com.project.game.model.board.Box;
 import com.project.game.model.game.Game;
-import com.project.game.model.player.Player;
-import com.project.game.model.player.PlayerBean;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,6 +66,8 @@ public class gameController {
     Game game = Game.getInstance();
     ArrayList<Integer> initialList;
 
+    Board initial = Board.getInstance();
+
     /**
      * gestione del click sul bottone back per tornare alla schermata principale
      * @throws IOException errori di I/O
@@ -92,10 +94,15 @@ public class gameController {
 
     /**
      * controllore del click sul bottone generate
+     * ieri sbagliavi, bisogna fare [i][j] e vedere se funziona
      */
+
+    /*
     @FXML
     protected void generateClickHandler() {
-        initialList = game.initializeBoard();
+        //initialList = game.initializeBoard();
+
+        initial = game.initialize();
         int index = 0;
         ObservableList<Node> children1 = ((GridPane) root2.lookup("#mainPane")).getChildren();
         // itero tutto il mainPanel per impostare il testo delle label con gli elementi creati nella initialList
@@ -104,10 +111,10 @@ public class gameController {
                 ObservableList<Node> children2 = ((Pane) child).getChildren();
                 for(Node child2 : children2) {
                     if(child2 instanceof Label) {
-                        if(initialList.get(index).equals(0)) {
+                        if(initial.get(index).getValue() == 0) {
                             ((Label) child2).setText(" ");
                         } else {
-                            ((Label) child2).setText(initialList.get(index).toString());
+                            ((Label) child2).setText(initial.get(index).toString());
                         }
                         index++;
                     }
@@ -125,6 +132,44 @@ public class gameController {
                             pane16.setBackground(Background.fill(Color.LIGHTGREEN));
                         }
                     }
+                }
+            }
+        }
+        generateButton.setDisable(true);
+    }
+
+     */
+
+    @FXML
+    protected void generateClickHandler() {
+        initial = game.initialize();
+        int index = 0;
+        ObservableList<Node> children1 = ((GridPane) root2.lookup("#mainPane")).getChildren();
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                //Recupero il valore della cella nella posizione i, j
+                int value = initial.board[i][j].getValue();
+                //recupero il pannello su cui scrivere
+                Pane child = (Pane) children1.get(index);
+                Label child2 = (Label) child.getChildren().get(0);
+                if(value == 0) {
+                    child2.setText(" ");
+                } else {
+                    child2.setText(String.valueOf(value));
+                }
+                index++;
+            }
+        }
+        // itero ancora tutto il mainPanel per trovare il pannello vuoto e impostarne lo sfondo a rosso
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                //Recupero il valore della cella nella posizione i, j
+                int value = initial.board[i][j].getValue();
+                //recupero il pannello su cui scrivere
+                Pane child = (Pane) children1.get(index);
+                if(value == 0) {
+                    child.setBackground(Background.fill(Color.RED));
+                    pane16.setBackground(Background.fill(Color.LIGHTGREEN));
                 }
             }
         }

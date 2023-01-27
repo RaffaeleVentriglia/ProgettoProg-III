@@ -4,26 +4,11 @@ package com.project.game.model.board;
 /**
  * classe che rappresenta i singoli quadrati in cui saranno rappresentati i numeri
  */
-public class Box {
+public class Box implements Manhattan {
     int manhattanDistance;
     int value;
     int x, y;
-
-    /**
-     * metodo per settare la distanza di Manhattan
-     * @param manhattanDistance distanza di manhattan per ogni bottone
-     */
-    public void setManhattanDistance(int manhattanDistance) {
-        this.manhattanDistance = manhattanDistance;
-    }
-
-    /**
-     * metodo per restituire la distanza di Manhattan
-     * @return manhattanDistance
-     */
-    public int getManhattanDistance() {
-        return manhattanDistance;
-    }
+    int depth;
 
     /**
      * metodo get per x
@@ -55,5 +40,46 @@ public class Box {
      */
     public void setY(int y) {
         this.y = y;
+    }
+
+    /**
+     * metodo get per value
+     * @return value del box
+     */
+    public int getValue() {
+        return value;
+    }
+
+    /**
+     * metodo set per value
+     * @param value valore del box
+     */
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setDepth(int depth) {
+        this.depth = depth;
+    }
+
+    /**
+     * metodo per settare la distanza di Manhattan
+     * @param manhattanDistance distanza di manhattan per ogni bottone
+     */
+    public void setManhattanDistance(int manhattanDistance) {
+        this.manhattanDistance = manhattanDistance;
+    }
+
+    /**
+     * metodo per restituire la distanza di Manhattan
+     * @return manhattanDistance
+     */
+    @Override
+    public int getManhattan() {
+        return manhattanDistance;
     }
 }

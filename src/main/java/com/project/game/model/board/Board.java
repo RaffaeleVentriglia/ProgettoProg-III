@@ -1,30 +1,11 @@
 package com.project.game.model.board;
 
-import com.project.game.model.algorithm.Game15Solver;
-
-import java.io.IOException;
 import java.util.*;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class Board {
     private static Board instance;
-    public int[][] board;
-    int blankX;
-    int blankY;
-    public int depth;
+    public Box[][] board;
     HashMap<MatrixWrapper, Board> cameFrom;
-    private static final Logger LOGGER = Logger.getLogger(Game15Solver.class.getName());
-    static {
-        try {
-            FileHandler fileHandler = new FileHandler("game15.log");
-            fileHandler.setFormatter(new SimpleFormatter());
-            LOGGER.addHandler(fileHandler);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * costruttore privato per applicare il Singleton
@@ -42,17 +23,12 @@ public class Board {
         return instance;
     }
 
-    public Board(int[][] board, int blankX, int blankY, int depth) {
-        this.board = board;
-        this.blankX = blankX;
-        this.blankY = blankY;
-        this.depth = depth;
-    }
-
     /**
      * calcola la distanza di manhattan per la board
      * @return distanza di manhattan
      */
+
+    /*
     public int manhattan() {
         int manhattan = 0;
         for (int i = 0; i < 4; i++) {
@@ -66,11 +42,14 @@ public class Board {
         }
         return manhattan;
     }
+     */
 
     /**
      * attraverso questo metodo generiamo una nuova board muovendo la cella vuota
      * @return board con la cella vuota spostata
      */
+
+    /*
     public List<Board> neighbors() {
         List<Board> neighbors = new ArrayList<>();
         int[] dx = {-1, 1, 0, 0};
@@ -89,14 +68,17 @@ public class Board {
         }
         return neighbors;
     }
+     */
 
     /**
      * attraverso questo metodo teniamo traccia di tutti i passaggi
      * effettuati per risolvere il puzzle
      * @return configurazione corrente della board
      */
-    public List<int[][]> path() {
-        List<int[][]> path = new ArrayList<>();
+
+    /*
+    public List<Box[][]> path() {
+        List<Box[][]> path = new ArrayList<>();
         Board current = this;
         while (current.depth != 0) {
             path.add(0, current.board);
@@ -107,4 +89,5 @@ public class Board {
         }
         return path;
     }
+     */
 }

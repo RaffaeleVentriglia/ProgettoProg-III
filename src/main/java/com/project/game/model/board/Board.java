@@ -7,6 +7,14 @@ public class Board {
     public Box[][] board;
     HashMap<MatrixWrapper, Board> cameFrom;
 
+    public Box[][] getBoard() {
+        return board;
+    }
+
+    public void setBoard(Box[][] board) {
+        this.board = board;
+    }
+
     /**
      * costruttore privato per applicare il Singleton
      */

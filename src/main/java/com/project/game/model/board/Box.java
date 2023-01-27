@@ -10,6 +10,14 @@ public class Box implements Manhattan {
     int x, y;
     int depth;
 
+    public Box() {
+        this.manhattanDistance = 0;
+        this.value = 0;
+        this.x = 0;
+        this.y = 0;
+        this.depth = 0;
+    }
+
     /**
      * metodo get per x
      * @return x

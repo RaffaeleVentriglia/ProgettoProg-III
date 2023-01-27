@@ -20,9 +20,8 @@ public class Game {
     private static Game game;
     private final List<Integer> num = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0);
     private final ArrayList<Integer> finalList = new ArrayList<>();
-    public ArrayList<Integer> initialList = new ArrayList<>(16);
-    public ArrayList<Box> initial = new ArrayList<>(16);
-    public Board initialLIST = Board.getInstance();
+    public Board initialList = Board.getInstance();
+    Box[][] boxes = new Box[4][4];
 
     /**
      * costruttore privato per applicare il Singleton
@@ -43,24 +42,13 @@ public class Game {
     /**
      * metodo che crea la board
      */
-    public ArrayList<Integer> initializeBoard() {
-        for(boolean isSolvable = false; !isSolvable;) {
-            // creo la lista ordinata
-            initialList = new ArrayList<>(16);
-            for(int i = 0; i < 16; i++) {
-                // inserisco l'elemento i alla posizione i
-                initialList.add(i,i);
+    public Board initializeBoard() {
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                boxes[i][j] = new Box();
             }
-            // mischio la lista
-            Collections.shuffle(initialList);
-            // controllo se la lista è risolvibile o no
-            isSolvable = isSolvable(initialList);
         }
-        System.out.println(initialList);
-        return initialList;
-    }
-
-    public Board initialize() {
+        initialList.setBoard(boxes);
         for(boolean isSolvable = false; !isSolvable;) {
             ArrayList<Integer> num = new ArrayList<>(16);
             for(int i = 0; i < 16; i++) {
@@ -70,14 +58,14 @@ public class Game {
             int index = 0;
             for(int i = 0; i < 4; i++) {
                 for(int j = 0; j < 4; j++) {
-                    initialLIST.board[i][j].setValue(num.get(index));
+                    boxes[i][j].setValue(num.get(index));
                     index++;
                 }
             }
-            isSolvable = isSolvable2(initialLIST);
+            isSolvable = isSolvable(initialList);
         }
-        System.out.println(initialLIST);
-        return initialLIST;
+        System.out.println(initialList);
+        return initialList;
     }
 
     /**
@@ -85,36 +73,7 @@ public class Game {
      * @param list lista contenente i numeri generati
      * @return vero se risolvibile, falso se non lo è
      */
-    private boolean isSolvable(ArrayList<Integer> list) {
-        if (list.size() != 16) {
-            System.err.println("La funzione isSolvable funziona unicamente con una lista avente valori da 0 a 16");
-        }
-        // se inversionSum è pari allora è risolvibile
-        int inversionSum = 0;
-        for (int i = 0; i < list.size(); i++) {
-            // per il bottone vuoto aggiungi il numero della riga alla somma
-            if (list.get(i) == 0) {
-                inversionSum += ((i / 4) + 1);
-                continue;
-            }
-            int count = 0;
-            for (int j = i + 1; j < list.size(); j++) {
-                // se il quadrato è vuoto non viene contato
-                if (list.get(j) == 0) {
-                    continue;
-                }
-                // se trovo un elemento più grande dell'elemento preso in considerazione allora incremento count
-                else if (list.get(i) > list.get(j)) {
-                    count++;
-                }
-            }
-            inversionSum += count;
-        }
-        // se inversionSum è pari ritorna true, altrimenti false
-        return inversionSum % 2 == 0;
-    }
-
-    private boolean isSolvable2(Board list) {
+    private boolean isSolvable(Board list) {
         int inversionSum = 0;
         for (int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
@@ -133,21 +92,19 @@ public class Game {
         return inversionSum % 2 == 0;
     }
 
-
-
-
-
     /**
      * metodo che permette la risoluzione del puzzle
      * @param list ArrayList del gioco
      */
-    public void solve(ArrayList<Integer> list) {
+    public void solve(Board list) {
+        /*
         int[][] listToArray = new int[4][4];
         for (int i = 0; i < listToArray.length; i++) {
             for (int j = 0; j < listToArray[i].length; j++) {
                 listToArray[i][j] = list.get(i * 4 + j);
             }
         }
+         */
         //Game15Solver.aStar(listToArray);
     }
 
@@ -155,8 +112,11 @@ public class Game {
      * metodo che permette di controllare se il puzzle è completato
      * @return true se risolto, false se non è risolto
      */
+
+    /*
     public boolean isFinished() {
         finalList.addAll(num);
-        return initialList.equals(finalList);
+        return initialLIST.equals(finalList);
     }
+     */
 }

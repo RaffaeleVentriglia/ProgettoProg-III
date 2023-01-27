@@ -65,7 +65,6 @@ public class gameController {
     Button backButton;
     Game game = Game.getInstance();
     ArrayList<Integer> initialList;
-
     Board initial = Board.getInstance();
 
     /**
@@ -89,60 +88,16 @@ public class gameController {
             game.makeMove();
         }
          */
-        game.solve(initialList);
+        game.solve(initial);
     }
 
     /**
      * controllore del click sul bottone generate
      * ieri sbagliavi, bisogna fare [i][j] e vedere se funziona
      */
-
-    /*
     @FXML
     protected void generateClickHandler() {
-        //initialList = game.initializeBoard();
-
-        initial = game.initialize();
-        int index = 0;
-        ObservableList<Node> children1 = ((GridPane) root2.lookup("#mainPane")).getChildren();
-        // itero tutto il mainPanel per impostare il testo delle label con gli elementi creati nella initialList
-        for (Node child : children1) {
-            if (child instanceof Pane) {
-                ObservableList<Node> children2 = ((Pane) child).getChildren();
-                for(Node child2 : children2) {
-                    if(child2 instanceof Label) {
-                        if(initial.get(index).getValue() == 0) {
-                            ((Label) child2).setText(" ");
-                        } else {
-                            ((Label) child2).setText(initial.get(index).toString());
-                        }
-                        index++;
-                    }
-                }
-            }
-        }
-        // itero ancora tutto il mainPanel per trovare il pannello vuoto e impostarne lo sfondo a rosso
-        for (Node child : children1) {
-            if (child instanceof Pane) {
-                ObservableList<Node> children2 = ((Pane) child).getChildren();
-                for(Node child2 : children2) {
-                    if(child2 instanceof Label) {
-                        if(Objects.equals(((Label) child2).getText(), " ")) {
-                            ((Pane) child).setBackground(Background.fill(Color.RED));
-                            pane16.setBackground(Background.fill(Color.LIGHTGREEN));
-                        }
-                    }
-                }
-            }
-        }
-        generateButton.setDisable(true);
-    }
-
-     */
-
-    @FXML
-    protected void generateClickHandler() {
-        initial = game.initialize();
+        initial = game.initializeBoard();
         int index = 0;
         ObservableList<Node> children1 = ((GridPane) root2.lookup("#mainPane")).getChildren();
         for (int i = 0; i < 4; i++) {
@@ -154,23 +109,12 @@ public class gameController {
                 Label child2 = (Label) child.getChildren().get(0);
                 if(value == 0) {
                     child2.setText(" ");
+                    child.setBackground(Background.fill(Color.RED));
+                    pane16.setBackground(Background.fill(Color.LIGHTGREEN));
                 } else {
                     child2.setText(String.valueOf(value));
                 }
                 index++;
-            }
-        }
-        // itero ancora tutto il mainPanel per trovare il pannello vuoto e impostarne lo sfondo a rosso
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                //Recupero il valore della cella nella posizione i, j
-                int value = initial.board[i][j].getValue();
-                //recupero il pannello su cui scrivere
-                Pane child = (Pane) children1.get(index);
-                if(value == 0) {
-                    child.setBackground(Background.fill(Color.RED));
-                    pane16.setBackground(Background.fill(Color.LIGHTGREEN));
-                }
             }
         }
         generateButton.setDisable(true);

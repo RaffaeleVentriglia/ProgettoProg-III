@@ -7,6 +7,7 @@ import java.util.*;
 
 public class Game15Solver {
     private static Game15Solver game15Solver;
+    public Board initialList = Board.getInstance();
 
     private Game15Solver() {}
 
@@ -46,9 +47,9 @@ public class Game15Solver {
     }
      */
 
-    public static void printMatrix(Box[][] matrix) {
-        for (Box[] ints : matrix) {
-            for (Box anInt : ints) {
+    public static void printMatrix(Integer[][] matrix) {
+        for (Integer[] ints : matrix) {
+            for (Integer anInt : ints) {
                 System.out.print(anInt + " ");
             }
             System.out.println();

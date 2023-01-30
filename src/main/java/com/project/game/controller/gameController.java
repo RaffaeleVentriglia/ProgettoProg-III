@@ -2,7 +2,6 @@ package com.project.game.controller;
 
 import com.project.game.MainPage;
 import com.project.game.model.board.Board;
-import com.project.game.model.board.Box;
 import com.project.game.model.game.Game;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,7 +17,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
 import static com.project.game.controller.homeController.root2;
 
@@ -64,8 +62,7 @@ public class gameController {
     @FXML
     Button backButton;
     Game game = Game.getInstance();
-    ArrayList<Integer> initialList;
-    Board initial = Board.getInstance();
+    Board initialList = Board.getInstance();
 
     /**
      * gestione del click sul bottone back per tornare alla schermata principale
@@ -88,22 +85,21 @@ public class gameController {
             game.makeMove();
         }
          */
-        game.solve(initial);
+        game.solve(initialList);
     }
 
     /**
      * controllore del click sul bottone generate
-     * ieri sbagliavi, bisogna fare [i][j] e vedere se funziona
      */
     @FXML
     protected void generateClickHandler() {
-        initial = game.initializeBoard();
+        initialList = game.initializeBoard();
         int index = 0;
         ObservableList<Node> children1 = ((GridPane) root2.lookup("#mainPane")).getChildren();
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 //Recupero il valore della cella nella posizione i, j
-                int value = initial.board[i][j].getValue();
+                int value = initialList.board[i][j].getValue();
                 //recupero il pannello su cui scrivere
                 Pane child = (Pane) children1.get(index);
                 Label child2 = (Label) child.getChildren().get(0);
@@ -117,6 +113,10 @@ public class gameController {
                 index++;
             }
         }
+        if(initialList.board[3][3].getValue() == 0) {
+            pane16.setBackground(Background.fill(Color.RED));
+        }
         generateButton.setDisable(true);
+        solveButton.setDisable(false);
     }
 }

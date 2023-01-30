@@ -47,6 +47,10 @@ public class Game15Solver {
     }
      */
 
+    public void makeMove() {
+
+    }
+
     public static void printMatrix(Integer[][] matrix) {
         for (Integer[] ints : matrix) {
             for (Integer anInt : ints) {

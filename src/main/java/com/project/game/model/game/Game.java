@@ -1,5 +1,6 @@
 package com.project.game.model.game;
 
+import com.project.game.model.algorithm.Game15Solver;
 import com.project.game.model.board.Board;
 import com.project.game.model.board.Box;
 
@@ -22,6 +23,7 @@ public class Game {
     private final ArrayList<Integer> finalList = new ArrayList<>();
     public Board initialList = Board.getInstance();
     Box[][] boxes = new Box[4][4];
+    Game15Solver game15Solver = Game15Solver.getInstance();
 
     /**
      * costruttore privato per applicare il Singleton
@@ -59,12 +61,19 @@ public class Game {
             for(int i = 0; i < 4; i++) {
                 for(int j = 0; j < 4; j++) {
                     boxes[i][j].setValue(num.get(index));
+                    boxes[i][j].setX(i);
+                    boxes[i][j].setY(j);
                     index++;
                 }
             }
             isSolvable = isSolvable(initialList);
         }
-        System.out.println(initialList);
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                System.out.print(initialList.board[i][j].getValue() + " ");
+            }
+            System.out.println(" ");
+        }
         return initialList;
     }
 
@@ -105,18 +114,36 @@ public class Game {
             }
         }
          */
-        //Game15Solver.aStar(listToArray);
+        //game15Solver.aStar(listToArray);
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                list.board[i][j].setManhattanDistance(list.board[i][j].getManhattan(i,j));
+                System.out.println(list.board[i][j].getManhattan(i,j));
+            }
+        }
+        /*
+        while(!isFinished()) {
+            game15Solver.makeMove();
+        }
+         */
     }
 
     /**
      * metodo che permette di controllare se il puzzle è completato
      * @return true se risolto, false se non è risolto
      */
-
-    /*
     public boolean isFinished() {
         finalList.addAll(num);
-        return initialLIST.equals(finalList);
+        int count = 0;
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                if(initialList.board[i][j].getValue() == finalList.get(count)) {
+                    count++;
+                } else {
+                    break;
+                }
+            }
+        }
+        return count == 16;
     }
-     */
 }

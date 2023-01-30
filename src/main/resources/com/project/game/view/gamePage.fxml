@@ -72,7 +72,7 @@
                     </children>
                 </GridPane>
                 <Button fx:id="generateButton" layoutX="536.0" layoutY="210.0" onAction="#generateClickHandler" prefHeight="37.0" prefWidth="104.0" styleClass="generateButton" text="Generate" />
-                <Button fx:id="solveButton" layoutX="536.0" layoutY="260.0" onAction="#solveClickHandler" prefHeight="37.0" prefWidth="104.0" styleClass="solveButton" text="Solve" />
+                <Button fx:id="solveButton" layoutX="536.0" layoutY="260.0" onAction="#solveClickHandler" prefHeight="37.0" prefWidth="104.0" styleClass="solveButton" text="Solve" disable="true" />
                 <Button fx:id="backButton" layoutX="536.0" layoutY="481.0" onAction="#backClickHandler" prefHeight="37.0" prefWidth="104.0" styleClass="backButton" text="Back" />
             </children>
         </AnchorPane>

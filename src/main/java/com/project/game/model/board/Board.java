@@ -5,15 +5,7 @@ import java.util.*;
 public class Board {
     private static Board instance;
     public Box[][] board;
-    HashMap<MatrixWrapper, Board> cameFrom;
-
-    public Box[][] getBoard() {
-        return board;
-    }
-
-    public void setBoard(Box[][] board) {
-        this.board = board;
-    }
+    //HashMap<MatrixWrapper, Board> cameFrom;
 
     /**
      * costruttore privato per applicare il Singleton
@@ -32,25 +24,21 @@ public class Board {
     }
 
     /**
-     * calcola la distanza di manhattan per la board
-     * @return distanza di manhattan
+     * metodo get per board
+     * @return board
      */
-
-    /*
-    public int manhattan() {
-        int manhattan = 0;
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (board[i][j] != 0) {
-                    int targetX = (board[i][j] - 1) / 4;
-                    int targetY = (board[i][j] - 1) % 4;
-                    manhattan += Math.abs(i - targetX) + Math.abs(j - targetY);
-                }
-            }
-        }
-        return manhattan;
+    public Box[][] getBoard() {
+        return board;
     }
+
+    /**
+     * metodo set per board
+     * @param board composta da Box[][]
      */
+    public void setBoard(Box[][] board) {
+        this.board = board;
+    }
+
 
     /**
      * attraverso questo metodo generiamo una nuova board muovendo la cella vuota

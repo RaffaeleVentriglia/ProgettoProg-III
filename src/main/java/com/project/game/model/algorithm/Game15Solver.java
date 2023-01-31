@@ -1,10 +1,13 @@
 package com.project.game.model.algorithm;
 
 import com.project.game.model.board.Board;
+import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.Set;
 
 public class Game15Solver {
     private static Game15Solver game15Solver;
-    public Board initialList = Board.getInstance();
+    public Board board = Board.getInstance();
 
     private Game15Solver() {}
 
@@ -15,46 +18,47 @@ public class Game15Solver {
         return game15Solver;
     }
 
-    /*
-    public static List<int[][]> aStar(Box[][] start) {
-        PriorityQueue<Board> queue = new PriorityQueue<>(Comparator.comparingInt(a -> (a.depth + a.manhattan())));
-        int blankX = 0;
-        int blankY = 0;
-        for (int i = 0; i < start.length; i++) {
-            for (int j = 0; j < start[i].length; j++) {
-                if (start[i][j].getValue() == 0) {
-                    blankX = i;
-                    blankY = j;
-                    break;
+    public Board aStar() {
+        int maxIterations = 100; // numero massimo d'iterazioni
+        int iterations = 0; // contatore d'iterazioni
+
+        PriorityQueue<Board> priorityQueue = new PriorityQueue<>(new ManhattanComparator());
+        Set<Board> visited = new HashSet<>();
+        priorityQueue.add(board);
+
+        while (!priorityQueue.isEmpty() && iterations < maxIterations) {
+            Board current = priorityQueue.poll();
+            printMatrix(current);
+            if (current.isSolved()) {
+                printMatrix(current);
+                return current;
+            }
+            visited.add(current);
+            for (Board neighbor : current.neighbors()) {
+                if (!visited.contains(neighbor)) {
+                    //printMatrix(neighbor);
+                    priorityQueue.add(neighbor);
                 }
             }
-        }
-        queue.offer(new Board(start, blankX, blankY, 0));
-        while (!queue.isEmpty()) {
-            Board current = queue.poll();
-            if (current.manhattan() == 0) {
-                return current.path();
-            }
-            for (Board neighbor : current.neighbors()) {
-                printMatrix(neighbor.board);
-                queue.offer(neighbor);
-            }
+            iterations++;
         }
         return null;
     }
+
+
+    /**
+     * funzione che permette di stampare la matrice
+     * @param matrix da stampare
      */
-
-    public void makeMove() {
-
-    }
-
-    public static void printMatrix(Integer[][] matrix) {
-        for (Integer[] ints : matrix) {
-            for (Integer anInt : ints) {
-                System.out.print(anInt + " ");
+    public static void printMatrix(Board matrix) {
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                System.out.print(matrix.board[i][j].getValue() + " ");
             }
             System.out.println();
         }
+        System.out.println();
+        System.out.println();
         System.out.println();
     }
 }

@@ -1,9 +1,15 @@
 package com.project.game.model.board;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Board {
     private static Board instance;
     public Box[][] board;
     public int manhattanDistance = 0;
+    private final List<Integer> num = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0);
+    private final ArrayList<Integer> finalList = new ArrayList<>();
 
     /**
      * costruttore privato per applicare il Singleton
@@ -19,6 +25,13 @@ public class Board {
             instance = new Board();
         }
         return instance;
+    }
+
+    public Board copyBoard() {
+        Board copy = new Board();
+        copy.setBoard(this.getBoard());
+        copy.setManhattanDistance(this.getManhattanDistance());
+        return copy;
     }
 
     /**
@@ -37,12 +50,14 @@ public class Board {
         this.board = board;
     }
 
-    public void swap(int row1, int col1, int row2, int col2) {
-        Box temp = board[row1][col1];
-        board[row1][col1] = board[row2][col2];
-        board[row2][col2] = temp;
+    public void setManhattanDistance(int manhattanDistance) {
+        this.manhattanDistance = manhattanDistance;
     }
 
+    /**
+     * metodo che ritorna la distanza di Manhattan dell'intera board
+     * @return distanza di Manhattan
+     */
     public int getManhattanDistance() {
         manhattanDistance = 0;
         for(int i = 0; i < 4; i++) {
@@ -54,30 +69,93 @@ public class Board {
     }
 
     /**
+     * metodo che controlla se il gioco è risolto
+     * @return true se risolto, false se non è risolto
+     */
+    public boolean isSolved() {
+        finalList.addAll(num);
+        int count = 0;
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                if(board[i][j].getValue() == finalList.get(count)) {
+                    count++;
+                } else {
+                    break;
+                }
+            }
+        }
+        return count == 16;
+    }
+
+    /**
+     * metodo che permette di scambiare gli elementi agli indici unidimensionali i1 e i2
+     * @param i1 indice unidimensionale del primo elemento
+     * @param i2 indice unidimensionale del secondo elemento
+     * @return board clonata con elementi spostati
+     */
+    public Board swap(int i1, int i2) {
+        Board copy = this.copyBoard();
+        // x e y del primo elemento
+        int row1 = i1 / 4;
+        int col1 = i1 % 4;
+        // x e y del secondo elemento
+        int row2 = i2 / 4;
+        int col2 = i2 % 4;
+
+        int tmp = copy.board[row1][col1].getValue();
+        copy.board[row1][col1].setValue(copy.board[row2][col2].getValue());
+        copy.board[row2][col2].setValue(tmp);
+        return copy;
+    }
+
+    /**
      * attraverso questo metodo generiamo una nuova board muovendo la cella vuota
      * @return board con la cella vuota spostata
      */
-
-    /*
     public List<Board> neighbors() {
-        List<Board> neighbors = new ArrayList<>();
-        int[] dx = {-1, 1, 0, 0};
-        int[] dy = {0, 0, -1, 1};
-        for (int i = 0; i < 4; i++) {
-            int x = blankX + dx[i];
-            int y = blankY + dy[i];
-            if (x >= 0 && x < 4 && y >= 0 && y < 4) {
-                int[][] newBoard = new int[4][4];
-                for(int m = 0; m < 4; m++)
-                    newBoard[m] = board[m].clone();
-                newBoard[blankX][blankY] = newBoard[x][y];
-                newBoard[x][y] = 0;
-                neighbors.add(new Board(newBoard, x, y, depth + 1));
-            }
+        ArrayList<Board> neighbors = new ArrayList<>();
+        int blankIndex = this.getBlankIndex();
+        int row = blankIndex / 4;
+        int col = blankIndex % 4;
+
+        // verifica se il blank può spostarsi in alto
+        if (row > 0) {
+            Board newBoard = this.swap(blankIndex, blankIndex - 4);
+            neighbors.add(newBoard);
+        }
+        // verifica se il blank può spostarsi a sinistra
+        if (col > 0) {
+            Board newBoard = this.swap(blankIndex, blankIndex - 1);
+            neighbors.add(newBoard);
+        }
+        // verifica se il blank può spostarsi in basso
+        if (row < 3) {
+            Board newBoard = this.swap(blankIndex, blankIndex + 4);
+            neighbors.add(newBoard);
+        }
+        // verifica se il blank può spostarsi a destra
+        if (col < 3) {
+            Board newBoard = this.swap(blankIndex, blankIndex + 1);
+            neighbors.add(newBoard);
         }
         return neighbors;
     }
+
+    /**
+     * metodo che ritorna l'indice unidimensionale del blank
+     * @return indice unidimensionale
      */
+    public int getBlankIndex() {
+        int index = 0;
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                if(this.board[i][j].getValue() == 0) {
+                    index = i * 4 + j;
+                }
+            }
+        }
+        return index;
+    }
 
     /**
      * attraverso questo metodo teniamo traccia di tutti i passaggi

@@ -108,30 +108,14 @@ public class Game {
      * @param list ArrayList del gioco
      */
     public void solve(Board list) {
-        /*
-        int[][] listToArray = new int[4][4];
-        for (int i = 0; i < listToArray.length; i++) {
-            for (int j = 0; j < listToArray[i].length; j++) {
-                listToArray[i][j] = list.get(i * 4 + j);
-            }
-        }
-         */
-        //game15Solver.aStar(listToArray);
-
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
-                //int index = j * 16 + i;
-                //list.board[i][j].setManhattanDistance(list.board[i][j].getManhattan(0, index));
                 System.out.print(list.board[i][j].getManhattanDistance() + " ");
             }
             System.out.println();
         }
         System.out.println("Distance: " + initialList.getManhattanDistance());
-        /*
-        while(!isFinished()) {
-            game15Solver.makeMove();
-        }
-         */
+        game15Solver.aStar();
     }
 
     /**

@@ -88,7 +88,10 @@ public class Box implements Manhattan {
         return Math.abs(goalX - currentX) + Math.abs(goalY - currentY);
     }
 
-
+    /**
+     * metodo che ritorna la manhattanDistance
+     * @return manhattan distance
+     */
     public int getManhattanDistance() {
         return manhattanDistance;
     }

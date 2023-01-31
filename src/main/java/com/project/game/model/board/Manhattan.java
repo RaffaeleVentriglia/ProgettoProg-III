@@ -1,5 +1,5 @@
 package com.project.game.model.board;
 
 public interface Manhattan {
-    int getManhattan(int x, int y);
+    int getManhattan(int value, int index);
 }

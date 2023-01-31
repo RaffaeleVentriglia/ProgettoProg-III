@@ -80,11 +80,6 @@ public class gameController {
      */
     @FXML
     protected void solveClickHandler() {
-        /*
-        while(!game.isFinished()) {
-            game.makeMove();
-        }
-         */
         game.solve(initialList);
     }
 

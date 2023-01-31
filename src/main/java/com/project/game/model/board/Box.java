@@ -9,10 +9,10 @@ public class Box implements Manhattan {
     int x, y;
 
     public Box() {
-        this.manhattanDistance = 0;
         this.value = 0;
         this.x = 0;
         this.y = 0;
+        this.manhattanDistance = 0;
     }
 
     /**
@@ -76,8 +76,17 @@ public class Box implements Manhattan {
      * @return manhattanDistance
      */
     @Override
-    public int getManhattan(int x, int y) {
-        manhattanDistance = Math.abs(x - this.x) + Math.abs(y - this.y);
+    public int getManhattan(int value, int index) {
+        int x = index / 16;
+        int y = index % 16;
+        int targetX = value / 16;
+        int targetY = value % 16;
+        manhattanDistance = Math.abs(x - targetX) + Math.abs(y - targetY);
         return this.manhattanDistance;
+    }
+
+
+    public int getManhattanDistance() {
+        return manhattanDistance;
     }
 }

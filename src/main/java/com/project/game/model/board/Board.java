@@ -1,11 +1,9 @@
 package com.project.game.model.board;
 
-import java.util.*;
-
 public class Board {
     private static Board instance;
     public Box[][] board;
-    //HashMap<MatrixWrapper, Board> cameFrom;
+    public int manhattanDistance = 0;
 
     /**
      * costruttore privato per applicare il Singleton
@@ -39,6 +37,20 @@ public class Board {
         this.board = board;
     }
 
+    public void swap(int row1, int col1, int row2, int col2) {
+        Box temp = board[row1][col1];
+        board[row1][col1] = board[row2][col2];
+        board[row2][col2] = temp;
+    }
+
+    public int getManhattanDistance() {
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                manhattanDistance += board[i][j].getManhattanDistance();
+            }
+        }
+        return manhattanDistance;
+    }
 
     /**
      * attraverso questo metodo generiamo una nuova board muovendo la cella vuota

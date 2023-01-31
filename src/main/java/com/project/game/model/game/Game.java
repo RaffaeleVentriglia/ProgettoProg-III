@@ -3,7 +3,6 @@ package com.project.game.model.game;
 import com.project.game.model.algorithm.Game15Solver;
 import com.project.game.model.board.Board;
 import com.project.game.model.board.Box;
-
 import java.util.*;
 
 /**
@@ -15,7 +14,6 @@ import java.util.*;
  * risolvere il gioco prima come arrayList e a ogni passo inviare al
  * gameController la lista in modo tale da spostare gli elementi
  */
-
 
 public class Game {
     private static Game game;
@@ -48,6 +46,8 @@ public class Game {
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
                 boxes[i][j] = new Box();
+                boxes[i][j].setX(i);
+                boxes[i][j].setY(j);
             }
         }
         initialList.setBoard(boxes);
@@ -57,48 +57,50 @@ public class Game {
                 num.add(i);
             }
             Collections.shuffle(num);
-            int index = 0;
+            int index = 0; // indice per iterare tutti gli elementi di num
             for(int i = 0; i < 4; i++) {
                 for(int j = 0; j < 4; j++) {
-                    boxes[i][j].setValue(num.get(index));
-                    boxes[i][j].setX(i);
-                    boxes[i][j].setY(j);
+                    int value = num.get(index); // valore della casella all'interno di num alla posizione index
+                    int index2 = j * 16 + i; // indice unidimensionale della casella presa da [i][j]
+                    boxes[i][j].setValue(num.get(index)); // setto il valore del box
+                    boxes[i][j].setManhattanDistance(boxes[i][j].getManhattan(value,index2)); // chiamo la funzione per settare la distanza di Manhattan per ogni box
                     index++;
                 }
             }
-            isSolvable = isSolvable(initialList);
-        }
-        for(int i = 0; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
-                System.out.print(initialList.board[i][j].getValue() + " ");
-            }
-            System.out.println(" ");
+            isSolvable = isSolvable(initialList); // controllo se la lista è risolvibile
         }
         return initialList;
     }
 
     /**
-     * funzione che permette di controllare se il puzzle creato è risolvibile o meno
+     * Funzione che permette di controllare se il puzzle creato è risolvibile o meno
+     * La teoria che determina se un gioco del 15 è risolvibile o meno è basata sul calcolo del numero
+     * d'inversioni presenti nella disposizione iniziale delle caselle. Il gioco è risolvibile se il numero
+     * d'inversioni è pari. Se il numero d'inversioni è dispari, il gioco non è risolvibile.
      * @param list lista contenente i numeri generati
      * @return vero se risolvibile, falso se non lo è
      */
     private boolean isSolvable(Board list) {
+        int[] flat = new int[15];
         int inversionSum = 0;
+        int index = 0;
         for (int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
                 if (list.board[i][j].getValue() == 0) {
-                    inversionSum += (i + j);
-                }
-                for (int x = i; x < 4; x++) {
-                    for (int y = j; y < 4; y++) {
-                        if (list.board[i][j].getValue() > list.board[x][y].getValue() && list.board[x][y].getValue() != 0) {
-                            inversionSum++;
-                        }
-                    }
+                    inversionSum += i;
+                } else {
+                    flat[index++] = list.board[i][j].getValue();
                 }
             }
         }
-        return inversionSum % 2 == 0;
+        for (int i = 0; i < 14; i++) {
+            for (int j = i + 1; j < 15; j++) {
+                if (flat[i] > flat[j]) {
+                    inversionSum++;
+                }
+            }
+        }
+        return (inversionSum + 4 - (index / 4)) % 2 == 0;
     }
 
     /**
@@ -115,12 +117,16 @@ public class Game {
         }
          */
         //game15Solver.aStar(listToArray);
+
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
-                list.board[i][j].setManhattanDistance(list.board[i][j].getManhattan(i,j));
-                System.out.println(list.board[i][j].getManhattan(i,j));
+                //int index = j * 16 + i;
+                //list.board[i][j].setManhattanDistance(list.board[i][j].getManhattan(0, index));
+                System.out.print(list.board[i][j].getManhattanDistance() + " ");
             }
+            System.out.println();
         }
+        System.out.println("Distance: " + initialList.getManhattanDistance());
         /*
         while(!isFinished()) {
             game15Solver.makeMove();

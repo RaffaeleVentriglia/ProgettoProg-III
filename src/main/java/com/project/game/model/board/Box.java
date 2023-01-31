@@ -77,12 +77,15 @@ public class Box implements Manhattan {
      */
     @Override
     public int getManhattan(int value, int index) {
-        int x = index / 16;
-        int y = index % 16;
-        int targetX = value / 16;
-        int targetY = value % 16;
-        manhattanDistance = Math.abs(x - targetX) + Math.abs(y - targetY);
-        return this.manhattanDistance;
+        int goalX = (value - 1) % 4;
+        int goalY = (value - 1) / 4;
+        int currentX = index % 4;
+        int currentY = index / 4;
+        if (value == 0) {
+            goalX = 3;
+            goalY = 3;
+        }
+        return Math.abs(goalX - currentX) + Math.abs(goalY - currentY);
     }
 
 

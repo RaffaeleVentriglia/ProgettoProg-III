@@ -1,6 +1,6 @@
 .welcomeText {
     -fx-font-weight: bold;
-    -fx-text-fill: #e6a91d;
+    -fx-text-fill: antiquewhite;
     -fx-font-size: 30pt;
     -fx-font-family: Arial;
 }
@@ -8,47 +8,48 @@
 .startGameButton {
     -fx-background-radius: 30;
     -fx-background-insets: 0,1,2,3,0;
-    -fx-text-fill: #e6a91d;
+    -fx-text-fill: antiquewhite;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
     -fx-padding: 10 20 10 20;
+    -fx-background-color: #2176FF;
 }
 
 .generalScoreButton {
     -fx-background-radius: 30;
     -fx-background-insets: 0,1,2,3,0;
-    -fx-text-fill: #e6a91d;
+    -fx-text-fill: antiquewhite;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
     -fx-padding: 10 20 10 20;
+    -fx-background-color: #2176FF;
 }
 
 .usernameText {
     -fx-font-weight: bold;
     -fx-font-size: 20px;
     -fx-font-family: Arial;
-    -fx-text-fill: #e6a91d;
+    -fx-text-fill: antiquewhite;
 }
 
 .usernameTextField {
     -fx-background-radius: 30;
     -fx-background-insets: 0, 1, 2, 3, 0;
-    -fx-text-fill: #e6a91d;
+    -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
     -fx-padding: 10 20 10 20;
 }
 
 .root {
-    -fx-background-color: #204f64;
+    -fx-background-color: #33A1FD;
 }
 
 .errorInsert {
     -fx-font-weight: bold;
-    -fx-text-fill: darkred;
+    -fx-text-fill: red;
     -fx-font-size: 20px;
 }
-
 
 .table-view .column-header,
 .table-view .column-header .filler,
@@ -62,18 +63,18 @@
 }
 
 .table-view {
-    -fx-background-color: transparent;
+    -fx-background-color: #FDCA40;
     -fx-font-size: 20px;
 }
 
 .table-view . table-column {
     -fx-alignment: CENTER;
-    -fx-text-fill: #e6a91d;
+    -fx-text-fill: antiquewhite;
     -fx-font-weight: bold;
 }
 
 .table-view .table-cell {
-    -fx-border-color: transparent;
+    -fx-border-color: #F79824;
     -fx-padding: 2 0 2 10px;
     -fx-text-alignment: center;
 }
@@ -88,7 +89,8 @@
 .backButton {
     -fx-background-radius: 30;
     -fx-background-insets: 0,1,2,3,0;
-    -fx-text-fill: #e6a91d;
+    -fx-background-color: #2176FF;
+    -fx-text-fill: antiquewhite;
     -fx-font-weight: bold;
     -fx-font-size: 10px;
     -fx-padding: 10 20 10 20;
@@ -97,7 +99,8 @@
 .solveButton {
     -fx-background-radius: 30;
     -fx-background-insets: 0,1,2,3,0;
-    -fx-text-fill: #e6a91d;
+    -fx-background-color: #2176FF;
+    -fx-text-fill: antiquewhite;
     -fx-font-weight: bold;
     -fx-font-size: 10px;
     -fx-padding: 10 20 10 20;
@@ -106,14 +109,9 @@
 .generateButton {
     -fx-background-radius: 30;
     -fx-background-insets: 0,1,2,3,0;
-    -fx-text-fill: #e6a91d;
+    -fx-background-color: #2176FF;
+    -fx-text-fill: antiquewhite;
     -fx-font-weight: bold;
     -fx-font-size: 10px;
     -fx-padding: 10 20 10 20;
-}
-
-.paneText {
-    -fx-text-fill: #e6a91d;
-    -fx-font-weight: bold;
-    -fx-font-size: 10px;
 }

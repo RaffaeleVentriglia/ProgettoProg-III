@@ -100,8 +100,8 @@ public class gameController {
                 Label child2 = (Label) child.getChildren().get(0);
                 if(value == 0) {
                     child2.setText(" ");
-                    child.setBackground(Background.fill(Color.RED));
-                    pane16.setBackground(Background.fill(Color.LIGHTGREEN));
+                    child.setBackground(Background.fill(Color.ANTIQUEWHITE));
+                    pane16.setBackground(Background.fill(Color.rgb(253,202,64)));
                 } else {
                     child2.setText(String.valueOf(value));
                 }
@@ -109,7 +109,7 @@ public class gameController {
             }
         }
         if(initialList.board[3][3].getValue() == 0) {
-            pane16.setBackground(Background.fill(Color.RED));
+            pane16.setBackground(Background.fill(Color.ANTIQUEWHITE));
         }
         generateButton.setDisable(true);
         solveButton.setDisable(false);

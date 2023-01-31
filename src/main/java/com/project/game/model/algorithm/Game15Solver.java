@@ -1,9 +1,6 @@
 package com.project.game.model.algorithm;
 
 import com.project.game.model.board.Board;
-import com.project.game.model.board.Box;
-
-import java.util.*;
 
 public class Game15Solver {
     private static Game15Solver game15Solver;

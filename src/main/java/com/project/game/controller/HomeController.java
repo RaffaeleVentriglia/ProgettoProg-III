@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class homeController {
+public class HomeController {
     @FXML
     Label errorInsert;
     @FXML
@@ -36,7 +36,7 @@ public class homeController {
             errorInsert.setOpacity(1.0);
         } else {
             try {
-                root2 = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/gamePage.fxml")));
+                root2 = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/GamePage.fxml")));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -52,7 +52,7 @@ public class homeController {
      */
     @FXML
     protected void generalScoreClickHandler() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/generalScorePage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/GeneralScorePage.fxml")));
         Stage window = (Stage) generalScoreButton.getScene().getWindow();
         window.setScene(new Scene(root,500,350));
     }

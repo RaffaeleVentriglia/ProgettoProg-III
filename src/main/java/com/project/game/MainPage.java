@@ -12,7 +12,7 @@ import java.util.Objects;
 public class MainPage extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view/homePage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view/HomePage.fxml")));
         stage.setTitle("Gioco del 15");
         Image image = new javafx.scene.image.Image(Objects.requireNonNull(getClass().getResource("images/icon.png")).toExternalForm());
         stage.getIcons().add(image);

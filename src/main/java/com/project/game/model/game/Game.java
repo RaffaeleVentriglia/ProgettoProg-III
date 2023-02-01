@@ -1,36 +1,29 @@
 package com.project.game.model.game;
 
 import com.project.game.model.algorithm.Game15Solver;
-import com.project.game.model.board.Board;
+import com.project.game.model.board.BoardPrototype;
 import com.project.game.model.board.Box;
-import java.util.*;
-
-/**
- * commento per vari ragionamenti
- *
- * gestire l'intero carico del gioco da questa classe, soprattutto il movimento dei numeri tra le varie caselle,
- * mentre nella gameController spostare semplicemente le caselle graficamente
- *
- * risolvere il gioco prima come arrayList e a ogni passo inviare al
- * gameController la lista in modo tale da spostare gli elementi
- */
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Game {
     private static Game game;
+    public static BoardPrototype boardPrototype = new BoardPrototype();
+    public Box[][] boxes = new Box[4][4];
     private final List<Integer> num = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0);
     private final ArrayList<Integer> finalList = new ArrayList<>();
-    public Board initialList = Board.getInstance();
-    Box[][] boxes = new Box[4][4];
     Game15Solver game15Solver = Game15Solver.getInstance();
 
     /**
-     * costruttore privato per applicare il Singleton
+     * costruttore privato per applicare Singleton
      */
     private Game() {}
 
     /**
-     * metodo con cui restituiamo l'unica istanza della partita
-     * @return game
+     * metodo per ritornare l'istanza unica di game
+     * @return istanza unica di game2
      */
     public static Game getInstance() {
         if(game == null) {
@@ -40,9 +33,10 @@ public class Game {
     }
 
     /**
-     * metodo che crea la board
+     * metodo che inizializza la board
+     * @return board inizializzata
      */
-    public Board initializeBoard() {
+    public BoardPrototype initializeBoard() {
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
                 boxes[i][j] = new Box();
@@ -50,7 +44,7 @@ public class Game {
                 boxes[i][j].setY(j);
             }
         }
-        initialList.setBoard(boxes);
+        boardPrototype.setBoard(boxes);
         for(boolean isSolvable = false; !isSolvable;) {
             ArrayList<Integer> num = new ArrayList<>(16);
             for(int i = 0; i < 16; i++) {
@@ -67,9 +61,9 @@ public class Game {
                     index++;
                 }
             }
-            isSolvable = isSolvable(initialList); // controllo se la lista è risolvibile
+            isSolvable = isSolvable(boardPrototype); // controllo se la lista è risolvibile
         }
-        return initialList;
+        return boardPrototype;
     }
 
     /**
@@ -80,7 +74,7 @@ public class Game {
      * @param list lista contenente i numeri generati
      * @return vero se risolvibile, falso se non lo è
      */
-    private boolean isSolvable(Board list) {
+    private boolean isSolvable(BoardPrototype list) {
         int[] flat = new int[15];
         int inversionSum = 0;
         int index = 0;
@@ -107,15 +101,15 @@ public class Game {
      * metodo che permette la risoluzione del puzzle
      * @param list ArrayList del gioco
      */
-    public void solve(Board list) {
+    public void solve(BoardPrototype list) {
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
                 System.out.print(list.board[i][j].getManhattanDistance() + " ");
             }
             System.out.println();
         }
-        System.out.println("Distance: " + initialList.getManhattanDistance());
-        game15Solver.aStar();
+        System.out.println("Distance: " + boardPrototype.getManhattanDistance());
+        game15Solver.aStar(list);
     }
 
     /**
@@ -127,7 +121,7 @@ public class Game {
         int count = 0;
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
-                if(initialList.board[i][j].getValue() == finalList.get(count)) {
+                if(boardPrototype.board[i][j].getValue() == finalList.get(count)) {
                     count++;
                 } else {
                     break;

@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class generalScoreController implements Initializable {
+public class GeneralScoreController implements Initializable {
     @FXML
     Button backButton;
     @FXML
@@ -35,7 +35,7 @@ public class generalScoreController implements Initializable {
      */
     @FXML
     protected void backClickHandler() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/homePage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/HomePage.fxml")));
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root,500,350));
     }

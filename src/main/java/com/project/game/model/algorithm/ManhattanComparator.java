@@ -1,11 +1,12 @@
 package com.project.game.model.algorithm;
 
-import com.project.game.model.board.Board;
+import com.project.game.model.board.BoardPrototype;
+
 import java.util.Comparator;
 
-public class ManhattanComparator implements Comparator<Board> {
+public class ManhattanComparator implements Comparator<BoardPrototype> {
     @Override
-    public int compare(Board board1, Board board2) {
+    public int compare(BoardPrototype board1, BoardPrototype board2) {
         int manhattan1 = board1.getManhattanDistance();
         int manhattan2 = board2.getManhattanDistance();
         // Integer.compare ritorna:

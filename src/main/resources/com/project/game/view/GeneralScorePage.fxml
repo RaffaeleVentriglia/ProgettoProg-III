@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.game.controller.generalScoreController">
+<BorderPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" styleClass="root" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.game.controller.GeneralScoreController">
     <top>
         <Label styleClass="welcomeText" text="General Score" BorderPane.alignment="CENTER">
             <BorderPane.margin>
@@ -14,7 +14,7 @@
     </top>
     <center>
         <AnchorPane BorderPane.alignment="CENTER">
-            <TableView fx:id="score" layoutX="17.0" layoutY="13.0" mouseTransparent="true" prefHeight="197.0" prefWidth="462.0" stylesheets="@style.css" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="13.0">
+            <TableView fx:id="score" layoutX="17.0" layoutY="13.0" mouseTransparent="true" prefHeight="197.0" prefWidth="462.0" stylesheets="@Style.css" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="13.0">
                 <columns>
                     <TableColumn fx:id="usernameColumn" editable="false" prefWidth="233.0" sortable="false" text="Username" />
                     <TableColumn fx:id="countColumn" editable="false" minWidth="0.0" prefWidth="227.0" sortable="false" text="Count" />

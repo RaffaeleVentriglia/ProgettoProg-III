@@ -1,7 +1,6 @@
 package com.project.game.controller;
 
 import com.project.game.MainPage;
-import com.project.game.model.board.Board;
 import com.project.game.model.game.Game;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,9 +17,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
-import static com.project.game.controller.homeController.root2;
+import static com.project.game.controller.HomeController.root2;
+import static com.project.game.model.game.Game.boardPrototype;
 
-public class gameController {
+public class GameController {
     @FXML
     Pane pane1;
     @FXML
@@ -62,7 +62,6 @@ public class gameController {
     @FXML
     Button backButton;
     Game game = Game.getInstance();
-    Board initialList = Board.getInstance();
 
     /**
      * gestione del click sul bottone back per tornare alla schermata principale
@@ -70,7 +69,7 @@ public class gameController {
      */
     @FXML
     protected void backClickHandler() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/homePage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(MainPage.class.getResource("view/HomePage.fxml")));
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root,500,350));
     }
@@ -80,7 +79,7 @@ public class gameController {
      */
     @FXML
     protected void solveClickHandler() {
-        game.solve(initialList);
+        game.solve(boardPrototype);
     }
 
     /**
@@ -88,13 +87,13 @@ public class gameController {
      */
     @FXML
     protected void generateClickHandler() {
-        initialList = game.initializeBoard();
+        boardPrototype = game.initializeBoard();
         int index = 0;
         ObservableList<Node> children1 = ((GridPane) root2.lookup("#mainPane")).getChildren();
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 //Recupero il valore della cella nella posizione i, j
-                int value = initialList.board[i][j].getValue();
+                int value = boardPrototype.board[i][j].getValue();
                 //recupero il pannello su cui scrivere
                 Pane child = (Pane) children1.get(index);
                 Label child2 = (Label) child.getChildren().get(0);
@@ -108,7 +107,7 @@ public class gameController {
                 index++;
             }
         }
-        if(initialList.board[3][3].getValue() == 0) {
+        if(boardPrototype.board[3][3].getValue() == 0) {
             pane16.setBackground(Background.fill(Color.ANTIQUEWHITE));
         }
         generateButton.setDisable(true);

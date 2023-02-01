@@ -10,6 +10,10 @@ public class BoardPrototype implements Prototype, Cloneable {
     public final List<Integer> num = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0);
     public final ArrayList<Integer> finalList = new ArrayList<>();
 
+    /**
+     * override del metodo clone per clonare la board
+     * @return clonazione della board
+     */
     @Override
     public Object clone() {
         try {
@@ -17,7 +21,10 @@ public class BoardPrototype implements Prototype, Cloneable {
             cloned.board = new Box[board.length][board[0].length];
             for(int i = 0; i < 4; i++) {
                 for(int j = 0; j < 4; j++) {
-                    cloned.board[i][j] = board[i][j];
+                    cloned.board[i][j] = new Box();
+                    cloned.board[i][j].setX(board[i][j].getX());
+                    cloned.board[i][j].setY(board[i][j].getY());
+                    cloned.board[i][j].setValue(board[i][j].getValue());
                 }
             }
             cloned.manhattanDistance = manhattanDistance;
@@ -66,6 +73,12 @@ public class BoardPrototype implements Prototype, Cloneable {
         return manhattanDistance;
     }
 
+    /**
+     * metodo che permette di scambiare gli elementi a index1 e index2
+     * @param index1 indice unidimensionale del primo elemento
+     * @param index2 indice unidimensionale del secondo elemento
+     * @return copia della board con elementi scambiati
+     */
     public BoardPrototype swap(int index1, int index2) {
         BoardPrototype copy = (BoardPrototype) this.clone();
         // x e y del primo elemento
@@ -86,7 +99,6 @@ public class BoardPrototype implements Prototype, Cloneable {
      * @return board con la cella vuota spostata
      */
     public List<BoardPrototype> neighbors() {
-        BoardPrototype newBoard;
         ArrayList<BoardPrototype> neighbors = new ArrayList<>();
         int blankIndex = this.getBlankIndex();
         int row = blankIndex / 4;
@@ -94,22 +106,22 @@ public class BoardPrototype implements Prototype, Cloneable {
 
         // verifica se il blank può spostarsi in alto
         if (row > 0) {
-            newBoard = this.swap(blankIndex, blankIndex - 4);
+            BoardPrototype newBoard = this.swap(blankIndex, blankIndex - 4);
             neighbors.add(newBoard);
         }
         // verifica se il blank può spostarsi a sinistra
         if (col > 0) {
-            newBoard = this.swap(blankIndex, blankIndex - 1);
+            BoardPrototype newBoard = this.swap(blankIndex, blankIndex - 1);
             neighbors.add(newBoard);
         }
         // verifica se il blank può spostarsi in basso
         if (row < 3) {
-            newBoard = this.swap(blankIndex, blankIndex + 4);
+            BoardPrototype newBoard = this.swap(blankIndex, blankIndex + 4);
             neighbors.add(newBoard);
         }
         // verifica se il blank può spostarsi a destra
         if (col < 3) {
-            newBoard = this.swap(blankIndex, blankIndex + 1);
+            BoardPrototype newBoard = this.swap(blankIndex, blankIndex + 1);
             neighbors.add(newBoard);
         }
         return neighbors;

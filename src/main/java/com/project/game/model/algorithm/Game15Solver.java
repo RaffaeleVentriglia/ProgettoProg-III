@@ -18,7 +18,7 @@ public class Game15Solver {
     }
 
     public BoardPrototype aStar(BoardPrototype board) {
-        int maxIterations = 100; // numero massimo d'iterazioni
+        int maxIterations = 1000; // numero massimo d'iterazioni
         int iterations = 0; // contatore d'iterazioni
 
         PriorityQueue<BoardPrototype> priorityQueue = new PriorityQueue<>(new ManhattanComparator());
@@ -27,9 +27,10 @@ public class Game15Solver {
 
         while (!priorityQueue.isEmpty() && iterations < maxIterations) {
             BoardPrototype current = priorityQueue.poll();
+            priorityQueue.clear();
             printMatrix(current);
             if (current.isSolved()) {
-                printMatrix(current);
+                //printMatrix(current);
                 return current;
             }
             visited.add(current);
@@ -40,7 +41,7 @@ public class Game15Solver {
             }
             iterations++;
         }
-        return null;
+        return board;
     }
 
     /**

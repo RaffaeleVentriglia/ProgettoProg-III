@@ -41,7 +41,7 @@ public class Game15Solver {
             BoardPrototype current = priorityQueue.poll();
             priorityQueue.clear();
             System.out.println(current.getManhattanDistance());
-            printMatrix(current);
+            //printMatrix(current);
             if (current.isSolved()) {
                 printMatrix(current);
                 return current;

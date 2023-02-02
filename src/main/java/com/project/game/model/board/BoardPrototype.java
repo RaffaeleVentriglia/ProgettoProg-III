@@ -34,13 +34,18 @@ public class BoardPrototype implements Prototype, Cloneable {
     }
 
     /**
-     * override del metodo equals
-     * @param obj object da confrontare
-     * @return true se uguale, false altrimenti
+     * metodo che permette di settare la distanza di Manhattan dei cloni creati
+     * @param neighbors arraylist di tutti i possibili vicini
+     * @param newBoard clone della board creata con un elemento spostato
      */
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    private void setCloneManhattanDistance(ArrayList<BoardPrototype> neighbors, BoardPrototype newBoard) {
+        for(int i = 0; i < 4; ++i) {
+            for(int j = 0; j < 4; ++j) {
+                int index = i * 4 + j;
+                newBoard.board[i][j].setManhattanDistance(board[i][j].getManhattan(board[i][j].getValue(), index));
+            }
+        }
+        neighbors.add(newBoard);
     }
 
     /**
@@ -96,10 +101,8 @@ public class BoardPrototype implements Prototype, Cloneable {
         int row2 = index2 / 4;
         int col2 = index2 % 4;
 
-        //int tmp = copy.board[row1][col1].getValue();
         copy.board[row1][col1].setValue(copy.board[row2][col2].getValue());
         copy.board[row2][col2].setValue(0);
-        //copy.getManhattanDistance();
         return copy;
     }
 
@@ -116,26 +119,22 @@ public class BoardPrototype implements Prototype, Cloneable {
         // verifica se il blank può spostarsi in alto
         if (row > 0) {
             BoardPrototype newBoard = this.swap(blankIndex, blankIndex - 4);
-            newBoard.getManhattanDistance();
-            neighbors.add(newBoard);
+            setCloneManhattanDistance(neighbors, newBoard);
         }
         // verifica se il blank può spostarsi a sinistra
         if (col > 0) {
             BoardPrototype newBoard = this.swap(blankIndex, blankIndex - 1);
-            newBoard.getManhattanDistance();
-            neighbors.add(newBoard);
+            setCloneManhattanDistance(neighbors, newBoard);
         }
         // verifica se il blank può spostarsi in basso
         if (row < 3) {
             BoardPrototype newBoard = this.swap(blankIndex, blankIndex + 4);
-            newBoard.getManhattanDistance();
-            neighbors.add(newBoard);
+            setCloneManhattanDistance(neighbors, newBoard);
         }
         // verifica se il blank può spostarsi a destra
         if (col < 3) {
             BoardPrototype newBoard = this.swap(blankIndex, blankIndex + 1);
-            newBoard.getManhattanDistance();
-            neighbors.add(newBoard);
+            setCloneManhattanDistance(neighbors, newBoard);
         }
         return neighbors;
     }
@@ -161,7 +160,6 @@ public class BoardPrototype implements Prototype, Cloneable {
      * @return true se risolto, false se non è risolto
      */
     public boolean isSolved() {
-        System.out.println(finalList);
         int count = 0;
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {

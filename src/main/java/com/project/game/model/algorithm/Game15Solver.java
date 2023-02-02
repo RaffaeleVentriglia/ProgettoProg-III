@@ -8,8 +8,15 @@ import java.util.Set;
 public class Game15Solver {
     private static Game15Solver game15Solver;
 
+    /**
+     * costruttore privato per applicare il Singleton
+     */
     private Game15Solver() {}
 
+    /**
+     * metodo per ritornare l'istanza unica del risolutore
+     * @return istanza unica del risolutore
+     */
     public static Game15Solver getInstance() {
         if(game15Solver == null) {
             game15Solver = new Game15Solver();
@@ -17,8 +24,13 @@ public class Game15Solver {
         return game15Solver;
     }
 
+    /**
+     * metodo che applico l'algoritmo A* sulla board
+     * @param board sulla quale applicare l'algoritmo
+     * @return board corretta, oppure una delle soluzioni da seguire per arrivare alla soluzione
+     */
     public BoardPrototype aStar(BoardPrototype board) {
-        int maxIterations = 1000; // numero massimo d'iterazioni
+        int maxIterations = 100; // numero massimo d'iterazioni
         int iterations = 0; // contatore d'iterazioni
 
         PriorityQueue<BoardPrototype> priorityQueue = new PriorityQueue<>(new ManhattanComparator());
@@ -28,9 +40,10 @@ public class Game15Solver {
         while (!priorityQueue.isEmpty() && iterations < maxIterations) {
             BoardPrototype current = priorityQueue.poll();
             priorityQueue.clear();
+            System.out.println(current.getManhattanDistance());
             printMatrix(current);
             if (current.isSolved()) {
-                //printMatrix(current);
+                printMatrix(current);
                 return current;
             }
             visited.add(current);
@@ -55,7 +68,6 @@ public class Game15Solver {
             }
             System.out.println();
         }
-        System.out.println();
         System.out.println();
         System.out.println();
     }

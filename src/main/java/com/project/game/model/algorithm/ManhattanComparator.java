@@ -1,7 +1,6 @@
 package com.project.game.model.algorithm;
 
 import com.project.game.model.board.BoardPrototype;
-
 import java.util.Comparator;
 
 public class ManhattanComparator implements Comparator<BoardPrototype> {

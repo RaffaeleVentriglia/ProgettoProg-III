@@ -1,7 +1,7 @@
 -- unica tabella di cui abbiamo bisogno
 CREATE TABLE player (
     username VARCHAR(50) NOT NULL,
-    count VARCHAR(25) NOT NULL,
+    count INTEGER NOT NULL,
     PRIMARY KEY(username, count)
 );
 

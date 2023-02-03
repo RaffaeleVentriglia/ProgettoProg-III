@@ -33,6 +33,30 @@ public class BoardPrototype implements Prototype, Cloneable {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BoardPrototype that = (BoardPrototype) o;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] != that.board[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.hashCode(board[0]);
+        for (int i = 1; i < board.length; i++) {
+            result = 31 * result + Arrays.hashCode(board[i]);
+        }
+        return result;
+    }
+
     /**
      * metodo get per board
      * @return board

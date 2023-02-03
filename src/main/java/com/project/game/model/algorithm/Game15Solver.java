@@ -1,9 +1,8 @@
 package com.project.game.model.algorithm;
 
 import com.project.game.model.board.BoardPrototype;
-import java.util.HashSet;
-import java.util.PriorityQueue;
-import java.util.Set;
+
+import java.util.*;
 
 public class Game15Solver {
     private static Game15Solver game15Solver;
@@ -27,37 +26,34 @@ public class Game15Solver {
     /**
      * metodo che applica l'algoritmo A* con distanza di Manhattan
      * @param board configurazione su cui applicare l'algoritmo
-     * @return la board risolta, ma sarebbe meglio ritornare un'arraylist che contiene la strada da seguire
      */
-    public BoardPrototype aStar(BoardPrototype board) {
-        int maxIterations = 50; // numero massimo d'iterazioni
+    public void aStar(BoardPrototype board) {
+        int maxIterations = 10; // numero massimo d'iterazioni
         int iterations = 0; // contatore d'iterazioni
+        BoardPrototype current;
 
         PriorityQueue<BoardPrototype> openList = new PriorityQueue<>(new ManhattanComparator());
-        Set<BoardPrototype> closeList = new HashSet<>();
+        Map<BoardPrototype, Integer> closeList = new HashMap<>();
         openList.add(board);
         while (!openList.isEmpty() && iterations < maxIterations) {
-            BoardPrototype current = openList.poll();
-            //openList.clear();
-            closeList.clear();
-            closeList.add(current);
-            System.out.println("Soluzione scelta");
-            System.out.println(current.getManhattanDistance());
+            current = openList.poll();
+            closeList.put(current, iterations);
+            //closeList.clear();
+            System.out.println("Soluzione scelta: " + current.getManhattanDistance());
             printMatrix(current);
             if (current.isSolved()) {
                 printMatrix(current);
-                return current;
+                return;
             }
             for (BoardPrototype neighbor : current.neighbors(current)) {
-                if (!closeList.contains(neighbor) && !openList.contains(neighbor)) {
+                if (!closeList.containsKey(neighbor) && !openList.contains(neighbor)) {
                     openList.add(neighbor);
+                    closeList.put(neighbor, iterations + 1);
                 }
             }
             iterations++;
         }
-        return board;
     }
-
 
     /**
      * funzione che permette di stampare la matrice

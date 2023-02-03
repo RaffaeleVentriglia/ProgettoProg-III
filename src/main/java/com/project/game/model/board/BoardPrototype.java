@@ -34,21 +34,6 @@ public class BoardPrototype implements Prototype, Cloneable {
     }
 
     /**
-     * metodo che permette di settare la distanza di Manhattan dei cloni creati
-     * @param neighbors arraylist di tutti i possibili vicini
-     * @param newBoard clone della board creata con un elemento spostato
-     */
-    private void setCloneManhattanDistance(ArrayList<BoardPrototype> neighbors, BoardPrototype newBoard) {
-        for(int i = 0; i < 4; ++i) {
-            for(int j = 0; j < 4; ++j) {
-                int index = i * 4 + j;
-                newBoard.board[i][j].setManhattanDistance(board[i][j].getManhattan(board[i][j].getValue(), index));
-            }
-        }
-        neighbors.add(newBoard);
-    }
-
-    /**
      * metodo get per board
      * @return board
      */
@@ -107,34 +92,67 @@ public class BoardPrototype implements Prototype, Cloneable {
     }
 
     /**
-     * attraverso questo metodo generiamo una nuova board muovendo la cella vuota
-     * @return board con la cella vuota spostata
+     * funzione che permette di calcolare i possibili movimenti in ogni board
+     * @param board di cui calcolare i vicini
+     * @return arraylist con i possibili vicini
      */
-    public List<BoardPrototype> neighbors() {
+    public List<BoardPrototype> neighbors(BoardPrototype board) {
         ArrayList<BoardPrototype> neighbors = new ArrayList<>();
-        int blankIndex = this.getBlankIndex();
+        int blankIndex = board.getBlankIndex();
         int row = blankIndex / 4;
         int col = blankIndex % 4;
 
         // verifica se il blank può spostarsi in alto
         if (row > 0) {
-            BoardPrototype newBoard = this.swap(blankIndex, blankIndex - 4);
-            setCloneManhattanDistance(neighbors, newBoard);
+            BoardPrototype cloned = (BoardPrototype) board.clone();
+            cloned = cloned.swap(blankIndex, blankIndex - 4);
+            for(int i = 0; i < 4; ++i) {
+                for(int j = 0; j < 4; ++j) {
+                    int index = i * 4 + j;
+                    cloned.board[i][j].setManhattanDistance(cloned.board[i][j].getManhattan(cloned.board[i][j].getValue(), index));
+                }
+            }
+            System.out.println(cloned.getManhattanDistance());
+            neighbors.add(cloned);
         }
         // verifica se il blank può spostarsi a sinistra
         if (col > 0) {
-            BoardPrototype newBoard = this.swap(blankIndex, blankIndex - 1);
-            setCloneManhattanDistance(neighbors, newBoard);
+            BoardPrototype cloned = (BoardPrototype) board.clone();
+            cloned = cloned.swap(blankIndex, blankIndex - 1);
+            for(int i = 0; i < 4; ++i) {
+                for(int j = 0; j < 4; ++j) {
+                    int index = i * 4 + j;
+                    cloned.board[i][j].setManhattanDistance(cloned.board[i][j].getManhattan(cloned.board[i][j].getValue(), index));
+                }
+            }
+            System.out.println(cloned.getManhattanDistance());
+            neighbors.add(cloned);
         }
         // verifica se il blank può spostarsi in basso
         if (row < 3) {
-            BoardPrototype newBoard = this.swap(blankIndex, blankIndex + 4);
-            setCloneManhattanDistance(neighbors, newBoard);
+            BoardPrototype cloned = (BoardPrototype) board.clone();
+            cloned = cloned.swap(blankIndex, blankIndex + 4);
+            for(int i = 0; i < 4; ++i) {
+                for(int j = 0; j < 4; ++j) {
+                    int index = i * 4 + j;
+                    cloned.board[i][j].setManhattanDistance(cloned.board[i][j].getManhattan(cloned.board[i][j].getValue(), index));
+                }
+            }
+            System.out.println(cloned.getManhattanDistance());
+            neighbors.add(cloned);
         }
         // verifica se il blank può spostarsi a destra
         if (col < 3) {
-            BoardPrototype newBoard = this.swap(blankIndex, blankIndex + 1);
-            setCloneManhattanDistance(neighbors, newBoard);
+            BoardPrototype cloned = (BoardPrototype) board.clone();
+            cloned = cloned.swap(blankIndex, blankIndex + 1);
+            for(int i = 0; i < 4; ++i) {
+                for(int j = 0; j < 4; ++j) {
+                    int index = i * 4 + j;
+                    cloned.board[i][j].setManhattanDistance(cloned.board[i][j].getManhattan(cloned.board[i][j].getValue(), index));
+                }
+            }
+            System.out.println(cloned.getManhattanDistance());
+            neighbors.add(cloned);
         }
         return neighbors;
     }

@@ -25,37 +25,39 @@ public class Game15Solver {
     }
 
     /**
-     * metodo che applico l'algoritmo A* sulla board
-     * @param board sulla quale applicare l'algoritmo
-     * @return board corretta, oppure una delle soluzioni da seguire per arrivare alla soluzione
+     * metodo che applica l'algoritmo A* con distanza di Manhattan
+     * @param board configurazione su cui applicare l'algoritmo
+     * @return la board risolta, ma sarebbe meglio ritornare un'arraylist che contiene la strada da seguire
      */
     public BoardPrototype aStar(BoardPrototype board) {
-        int maxIterations = 100; // numero massimo d'iterazioni
+        int maxIterations = 50; // numero massimo d'iterazioni
         int iterations = 0; // contatore d'iterazioni
 
-        PriorityQueue<BoardPrototype> priorityQueue = new PriorityQueue<>(new ManhattanComparator());
-        Set<BoardPrototype> visited = new HashSet<>();
-        priorityQueue.add(board);
-
-        while (!priorityQueue.isEmpty() && iterations < maxIterations) {
-            BoardPrototype current = priorityQueue.poll();
-            priorityQueue.clear();
+        PriorityQueue<BoardPrototype> openList = new PriorityQueue<>(new ManhattanComparator());
+        Set<BoardPrototype> closeList = new HashSet<>();
+        openList.add(board);
+        while (!openList.isEmpty() && iterations < maxIterations) {
+            BoardPrototype current = openList.poll();
+            //openList.clear();
+            closeList.clear();
+            closeList.add(current);
+            System.out.println("Soluzione scelta");
             System.out.println(current.getManhattanDistance());
-            //printMatrix(current);
+            printMatrix(current);
             if (current.isSolved()) {
                 printMatrix(current);
                 return current;
             }
-            visited.add(current);
-            for (BoardPrototype neighbor : current.neighbors()) {
-                if (!visited.contains(neighbor)) {
-                    priorityQueue.add(neighbor);
+            for (BoardPrototype neighbor : current.neighbors(current)) {
+                if (!closeList.contains(neighbor) && !openList.contains(neighbor)) {
+                    openList.add(neighbor);
                 }
             }
             iterations++;
         }
         return board;
     }
+
 
     /**
      * funzione che permette di stampare la matrice

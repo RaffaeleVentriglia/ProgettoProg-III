@@ -8,10 +8,14 @@ public class ManhattanComparator implements Comparator<BoardPrototype> {
     public int compare(BoardPrototype board1, BoardPrototype board2) {
         int manhattan1 = board1.getManhattanDistance();
         int manhattan2 = board2.getManhattanDistance();
+        int g1 = board1.getG_n();
+        int g2 = board2.getG_n();
+        int f1 = manhattan1 + g1;
+        int f2 = manhattan2 + g2;
         // Integer.compare ritorna:
         //          -1 se manhattan1 è minore di manhattan2
         //           1 se manhattan1 è maggiore di manhattan2
         //           0 se manhattan1 è uguale a manhattan2
-        return Integer.compare(manhattan1, manhattan2);
+        return Integer.compare(f1, f2);
     }
 }

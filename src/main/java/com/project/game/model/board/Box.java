@@ -4,15 +4,18 @@ package com.project.game.model.board;
  * classe che rappresenta i singoli quadrati in cui saranno rappresentati i numeri
  */
 public class Box implements Manhattan {
-    int manhattanDistance;
-    int value;
-    int x, y;
+    int manhattanDistance; // dal nodo corrente al nodo finale
+    int g_n; // dal nodo iniziale al nodo corrente
+    int value; // valore contenuto nella box
+    int x, y; // coordinate della box
+    int initialX, initialY; // coordinate iniziali che non devono essere modificate
 
     public Box() {
         this.value = 0;
         this.x = 0;
         this.y = 0;
         this.manhattanDistance = 0;
+        this.g_n = 0;
     }
 
     /**
@@ -62,6 +65,40 @@ public class Box implements Manhattan {
     public void setValue(int value) {
         this.value = value;
     }
+
+
+
+    public int getG_n() {
+        return this.g_n;
+    }
+
+    public void setG_n(int g_n) {
+        this.g_n = g_n;
+    }
+
+    public int getInitialX() {
+        return initialX;
+    }
+
+    public int getInitialY() {
+        return initialY;
+    }
+
+    public void setInitialX(int initialX) {
+        this.initialX = initialX;
+    }
+
+    public void setInitialY(int initialY) {
+        this.initialY = initialY;
+    }
+
+    // da modificare con initialX e initialY
+    public int getG(int index) {
+        int currentX = index / 4;
+        int currentY = index % 4;
+        return Math.abs(this.initialX - currentX) + Math.abs(this.initialY - currentY);
+    }
+
 
     /**
      * metodo per settare la distanza di Manhattan

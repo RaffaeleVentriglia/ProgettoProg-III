@@ -58,6 +58,8 @@ public class Game {
                     int index2 = i * 4 + j; // indice unidimensionale della casella presa da [i][j]
                     boxes[i][j].setValue(num.get(index)); // setto il valore del box
                     boxes[i][j].setManhattanDistance(boxes[i][j].getManhattan(value,index2)); // chiamo la funzione per settare la distanza di Manhattan per ogni box
+                    boxes[i][j].setInitialX(i); // imposto la x iniziale
+                    boxes[i][j].setInitialY(j); // imposto la y iniziale
                     index++;
                 }
             }

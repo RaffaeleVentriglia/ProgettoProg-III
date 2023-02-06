@@ -27,8 +27,9 @@ public class Game15Solver {
      * metodo che applica l'algoritmo A* con distanza di Manhattan
      * @param board configurazione su cui applicare l'algoritmo
      */
+    /*
     public void aStar(BoardPrototype board) {
-        int maxIterations = 10; // numero massimo d'iterazioni
+        int maxIterations = 150; // numero massimo d'iterazioni
         int iterations = 0; // contatore d'iterazioni
         BoardPrototype current;
 
@@ -44,16 +45,50 @@ public class Game15Solver {
             if (current.isSolved()) {
                 printMatrix(current);
                 return;
-            }
-            for (BoardPrototype neighbor : current.neighbors(current)) {
-                if (!closeList.containsKey(neighbor) && !openList.contains(neighbor)) {
-                    openList.add(neighbor);
-                    closeList.put(neighbor, iterations + 1);
+            } else {
+                for (BoardPrototype neighbor : current.neighbors(current)) {
+                    if (!closeList.containsKey(neighbor) && !openList.contains(neighbor)) {
+                        openList.add(neighbor);
+                        closeList.put(neighbor, iterations + 1);
+                    }
                 }
             }
             iterations++;
         }
     }
+
+     */
+
+    public BoardPrototype aStar(BoardPrototype board) {
+        int maxIterations = 100; // numero massimo d'iterazioni
+        int iterations = 0; // contatore d'iterazioni
+        BoardPrototype current;
+
+        PriorityQueue<BoardPrototype> openList = new PriorityQueue<>(new ManhattanComparator());
+        Set<BoardPrototype> closeList = new HashSet<>();
+        openList.add(board);
+        while (!openList.isEmpty() && iterations < maxIterations) {
+            current = openList.poll();
+            closeList.add(current);
+            printMatrix(current);
+            System.out.println("G(N): " + current.getG_n());
+            if (current.isSolved()) {
+                System.out.println("Soluzione trovata in xxxx iterazioni: ");
+                printMatrix(current);
+                return current;
+            } else {
+                for (BoardPrototype neighbor : current.neighbors(current)) {
+                    if (!closeList.contains(neighbor) && !openList.contains(neighbor)) {
+                        openList.add(neighbor);
+                    }
+                }
+            }
+            iterations++;
+        }
+        System.out.println("Soluzione non trovata");
+        return null;
+    }
+
 
     /**
      * funzione che permette di stampare la matrice

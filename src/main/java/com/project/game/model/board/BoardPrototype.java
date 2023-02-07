@@ -26,6 +26,8 @@ public class BoardPrototype implements Prototype, Cloneable {
                     cloned.board[i][j].setY(board[i][j].getY());
                     cloned.board[i][j].setValue(board[i][j].getValue());
                     cloned.board[i][j].setG_n(board[i][j].getG_n());
+                    cloned.board[i][j].setInitialX(board[i][j].getInitialX());
+                    cloned.board[i][j].setInitialY(board[i][j].getInitialY());
                 }
             }
             return cloned;
@@ -130,8 +132,21 @@ public class BoardPrototype implements Prototype, Cloneable {
         int row2 = index2 / 4;
         int col2 = index2 % 4;
 
+        int initialX1 = copy.board[row1][col1].getInitialX();
+        int initialX2 = copy.board[row2][col2].getInitialX();
+        int initialY1 = copy.board[row1][col1].getInitialY();
+        int initialY2 = copy.board[row2][col2].getInitialY();
+
         copy.board[row1][col1].setValue(copy.board[row2][col2].getValue());
         copy.board[row2][col2].setValue(0);
+
+        copy.board[row1][col1].setInitialX(initialX2);
+        copy.board[row2][col2].setInitialX(initialX1);
+        copy.board[row1][col1].setInitialY(initialY2);
+        copy.board[row2][col2].setInitialY(initialY1);
+
+        copy.board[row1][col1].setG_n(copy.board[row1][col1].getG(index1));
+        copy.board[row2][col2].setG_n(copy.board[row2][col2].getG(index2));
         return copy;
     }
 
@@ -153,8 +168,8 @@ public class BoardPrototype implements Prototype, Cloneable {
             for(int i = 0; i < 4; ++i) {
                 for(int j = 0; j < 4; ++j) {
                     int index = i * 4 + j;
+                    // h(n)
                     cloned.board[i][j].setManhattanDistance(cloned.board[i][j].getManhattan(cloned.board[i][j].getValue(), index));
-                    cloned.board[i][j].setG_n(cloned.board[i][j].getG(blankIndex - 4));
                 }
             }
             neighbors.add(cloned);
@@ -167,7 +182,6 @@ public class BoardPrototype implements Prototype, Cloneable {
                 for(int j = 0; j < 4; ++j) {
                     int index = i * 4 + j;
                     cloned.board[i][j].setManhattanDistance(cloned.board[i][j].getManhattan(cloned.board[i][j].getValue(), index));
-                    cloned.board[i][j].setG_n(cloned.board[i][j].getG(blankIndex - 1));
                 }
             }
             neighbors.add(cloned);
@@ -180,7 +194,6 @@ public class BoardPrototype implements Prototype, Cloneable {
                 for(int j = 0; j < 4; ++j) {
                     int index = i * 4 + j;
                     cloned.board[i][j].setManhattanDistance(cloned.board[i][j].getManhattan(cloned.board[i][j].getValue(), index));
-                    cloned.board[i][j].setG_n(cloned.board[i][j].getG(blankIndex + 4));
                 }
             }
             neighbors.add(cloned);
@@ -193,7 +206,6 @@ public class BoardPrototype implements Prototype, Cloneable {
                 for(int j = 0; j < 4; ++j) {
                     int index = i * 4 + j;
                     cloned.board[i][j].setManhattanDistance(cloned.board[i][j].getManhattan(cloned.board[i][j].getValue(), index));
-                    cloned.board[i][j].setG_n(cloned.board[i][j].getG(blankIndex + 1));
                 }
             }
             neighbors.add(cloned);
@@ -237,5 +249,4 @@ public class BoardPrototype implements Prototype, Cloneable {
         }
         return false;
     }
-
 }

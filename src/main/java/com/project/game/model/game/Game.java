@@ -60,6 +60,7 @@ public class Game {
                     boxes[i][j].setManhattanDistance(boxes[i][j].getManhattan(value,index2)); // chiamo la funzione per settare la distanza di Manhattan per ogni box
                     boxes[i][j].setInitialX(i); // imposto la x iniziale
                     boxes[i][j].setInitialY(j); // imposto la y iniziale
+                    boxes[i][j].setG_n(boxes[i][j].getG(index2)); // calcolo la prima g (ovviamente vale 0)
                     index++;
                 }
             }
@@ -111,6 +112,13 @@ public class Game {
             System.out.println();
         }
         System.out.println("Distance: " + boardPrototype.getManhattanDistance());
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                System.out.print(list.board[i][j].getG_n() + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("G(n): " + boardPrototype.getG_n());
         game15Solver.aStar(list);
     }
 

@@ -5,7 +5,7 @@ package com.project.game.model.board;
  */
 public class Box implements Manhattan {
     int manhattanDistance; // dal nodo corrente al nodo finale
-    int g_n; // dal nodo iniziale al nodo corrente
+    int g_n = 0; // dal nodo iniziale al nodo corrente
     int value; // valore contenuto nella box
     int x, y; // coordinate della box
     int initialX, initialY; // coordinate iniziali che non devono essere modificate
@@ -15,7 +15,6 @@ public class Box implements Manhattan {
         this.x = 0;
         this.y = 0;
         this.manhattanDistance = 0;
-        this.g_n = 0;
     }
 
     /**
@@ -92,7 +91,8 @@ public class Box implements Manhattan {
         this.initialY = initialY;
     }
 
-    // da modificare con initialX e initialY
+
+
     public int getG(int index) {
         int currentX = index / 4;
         int currentY = index % 4;

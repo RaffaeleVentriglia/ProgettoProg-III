@@ -60,7 +60,7 @@ public class Game15Solver {
      */
 
     public BoardPrototype aStar(BoardPrototype board) {
-        int maxIterations = 100; // numero massimo d'iterazioni
+        int maxIterations = 10; // numero massimo d'iterazioni
         int iterations = 0; // contatore d'iterazioni
         BoardPrototype current;
 
@@ -70,8 +70,16 @@ public class Game15Solver {
         while (!openList.isEmpty() && iterations < maxIterations) {
             current = openList.poll();
             closeList.add(current);
+            openList.clear();
             printMatrix(current);
             System.out.println("G(N): " + current.getG_n());
+            for(int i = 0; i < 4; i++) {
+                for(int j = 0; j < 4; j++) {
+                    System.out.print(current.board[i][j].getG_n() + " ");
+                }
+                System.out.println();
+            }
+            System.out.println();
             if (current.isSolved()) {
                 System.out.println("Soluzione trovata in xxxx iterazioni: ");
                 printMatrix(current);
@@ -101,7 +109,5 @@ public class Game15Solver {
             }
             System.out.println();
         }
-        System.out.println();
-        System.out.println();
     }
 }

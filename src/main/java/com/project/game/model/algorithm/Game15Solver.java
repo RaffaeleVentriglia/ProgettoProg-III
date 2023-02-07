@@ -39,7 +39,6 @@ public class Game15Solver {
         while (!openList.isEmpty() && iterations < maxIterations) {
             current = openList.poll();
             closeList.put(current, iterations);
-            //closeList.clear();
             System.out.println("Soluzione scelta: " + current.getManhattanDistance());
             printMatrix(current);
             if (current.isSolved()) {
@@ -59,8 +58,10 @@ public class Game15Solver {
 
      */
 
+
+    /*
     public BoardPrototype aStar(BoardPrototype board) {
-        int maxIterations = 10; // numero massimo d'iterazioni
+        int maxIterations = 20; // numero massimo d'iterazioni
         int iterations = 0; // contatore d'iterazioni
         BoardPrototype current;
 
@@ -88,6 +89,49 @@ public class Game15Solver {
                 for (BoardPrototype neighbor : current.neighbors(current)) {
                     if (!closeList.contains(neighbor) && !openList.contains(neighbor)) {
                         openList.add(neighbor);
+                    }
+                }
+            }
+            iterations++;
+        }
+        System.out.println("Soluzione non trovata");
+        return null;
+    }
+
+     */
+
+
+    public BoardPrototype aStar(BoardPrototype board) {
+        int maxIterations = 1000; // numero massimo d'iterazioni
+        int iterations = 0; // contatore d'iterazioni
+        BoardPrototype current;
+
+        PriorityQueue<BoardPrototype> openList = new PriorityQueue<>(new ManhattanComparator());
+        Set<BoardPrototype> closeList = new HashSet<>();
+        openList.add(board);
+        while (!openList.isEmpty() && iterations < maxIterations) {
+            current = openList.poll();
+            closeList.add(current);
+            printMatrix(current);
+            System.out.println();
+            if (current.isSolved()) {
+                System.out.println("Soluzione trovata in xxxx iterazioni: ");
+                printMatrix(current);
+                return current;
+            } else {
+                for (BoardPrototype neighbor : current.neighbors(current)) {
+                    if (!closeList.contains(neighbor)) {
+                        if (!openList.contains(neighbor)) {
+                            openList.add(neighbor);
+                        } else {
+                            // Se la BoardPrototype è già presente nella openList,
+                            // controllo se il suo valore G_n è più basso rispetto a quello presente nella closeList
+                            BoardPrototype existing = openList.stream().filter(b -> b.equals(neighbor)).findFirst().get();
+                            if (existing.getG_n() > neighbor.getG_n()) {
+                                openList.remove(existing);
+                                openList.add(neighbor);
+                            }
+                        }
                     }
                 }
             }

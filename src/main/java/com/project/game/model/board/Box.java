@@ -65,40 +65,53 @@ public class Box implements Manhattan {
         this.value = value;
     }
 
-
-
+    /**
+     * metodo get per la funzione G
+     * @return g
+     */
     public int getG_n() {
         return this.g_n;
     }
 
+    /**
+     * metodo set per la funzione G
+     * @param g_n della box
+     */
     public void setG_n(int g_n) {
         this.g_n = g_n;
     }
 
+    /**
+     * metodo get per initialX
+     * @return coordinata X iniziale
+     */
     public int getInitialX() {
         return initialX;
     }
 
+    /**
+     * metodo get per initialY
+     * @return coordinata Y iniziale
+     */
     public int getInitialY() {
         return initialY;
     }
 
+    /**
+     * metodo set per initialX
+     * @param initialX coordinata X
+     */
     public void setInitialX(int initialX) {
         this.initialX = initialX;
     }
 
+    /**
+     * metodo set per initialY
+     * @param initialY coordinata T
+     */
     public void setInitialY(int initialY) {
         this.initialY = initialY;
     }
-
-
-
-    public int getG(int index) {
-        int currentX = index / 4;
-        int currentY = index % 4;
-        return Math.abs(this.initialX - currentX) + Math.abs(this.initialY - currentY);
-    }
-
 
     /**
      * metodo per settare la distanza di Manhattan

@@ -132,21 +132,31 @@ public class BoardPrototype implements Prototype, Cloneable {
         int row2 = index2 / 4;
         int col2 = index2 % 4;
 
+        // salvo i valori initialX e initialY
         int initialX1 = copy.board[row1][col1].getInitialX();
         int initialX2 = copy.board[row2][col2].getInitialX();
         int initialY1 = copy.board[row1][col1].getInitialY();
         int initialY2 = copy.board[row2][col2].getInitialY();
 
+        // swap dei valori presenti nei box
         copy.board[row1][col1].setValue(copy.board[row2][col2].getValue());
         copy.board[row2][col2].setValue(0);
 
+        // swap dei valori della initialX e initialY delle due box
         copy.board[row1][col1].setInitialX(initialX2);
         copy.board[row2][col2].setInitialX(initialX1);
         copy.board[row1][col1].setInitialY(initialY2);
         copy.board[row2][col2].setInitialY(initialY1);
 
-        copy.board[row1][col1].setG_n(copy.board[row1][col1].getG(index1));
-        copy.board[row2][col2].setG_n(copy.board[row2][col2].getG(index2));
+        // swap dei valori presenti in g nelle due box
+        int g1_n = copy.board[row1][col1].getG_n();
+        int g2_n = copy.board[row2][col2].getG_n();
+
+        copy.board[row1][col1].setG_n(g2_n);
+        copy.board[row2][col2].setG_n(g1_n);
+
+        copy.board[row1][col1].setG_n(copy.board[row1][col1].getG_n() + 1);
+        copy.board[row2][col2].setG_n(copy.board[row2][col2].getG_n() + 1);
         return copy;
     }
 

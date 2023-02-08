@@ -6,12 +6,8 @@ import java.util.Comparator;
 public class ManhattanComparator implements Comparator<BoardPrototype> {
     @Override
     public int compare(BoardPrototype board1, BoardPrototype board2) {
-        int manhattan1 = board1.getManhattanDistance();
-        int manhattan2 = board2.getManhattanDistance();
-        int g1 = board1.getG_n();
-        int g2 = board2.getG_n();
-        int f1 = manhattan1 + g1;
-        int f2 = manhattan2 + g2;
+        int f1 = board1.getManhattanDistance() + board1.getG_n();
+        int f2 = board2.getManhattanDistance() + board2.getG_n();
         // Integer.compare ritorna:
         //          -1 se manhattan1 è minore di manhattan2
         //           1 se manhattan1 è maggiore di manhattan2

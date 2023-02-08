@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Game15Solver {
     private static Game15Solver game15Solver;
+    ManhattanComparator manhattanComparator = new ManhattanComparator();
 
     /**
      * costruttore privato per applicare il Singleton
@@ -60,18 +61,19 @@ public class Game15Solver {
 
 
     public BoardPrototype aStar(BoardPrototype board) {
-        int maxIterations = 20; // numero massimo d'iterazioni
+        int maxIterations = 100; // numero massimo d'iterazioni
         int iterations = 0; // contatore d'iterazioni
         BoardPrototype current;
 
-        PriorityQueue<BoardPrototype> openList = new PriorityQueue<>(new ManhattanComparator());
+        PriorityQueue<BoardPrototype> openList = new PriorityQueue<>(manhattanComparator);
         Set<BoardPrototype> closeList = new HashSet<>();
+        Map<BoardPrototype, Boolean> closedMap = new HashMap<>();
         openList.add(board);
         while (!openList.isEmpty() && iterations < maxIterations) {
             current = openList.poll();
             closeList.add(current);
-            openList.clear();
-            printMatrix(current);
+            //openList.clear();
+            //printMatrix(current);
             System.out.println("G(N): " + current.getG_n());
             for(int i = 0; i < 4; i++) {
                 for(int j = 0; j < 4; j++) {
@@ -85,11 +87,28 @@ public class Game15Solver {
                 printMatrix(current);
                 return current;
             } else {
+                /*
                 for (BoardPrototype neighbor : current.neighbors(current)) {
+                    System.out.println("Possibile soluzione");
+                    System.out.println("G: " + neighbor.getG_n() + " Manhattan: " + neighbor.getManhattanDistance());
+                    printMatrix(neighbor);
                     if (!closeList.contains(neighbor) && !openList.contains(neighbor)) {
                         openList.add(neighbor);
                     }
                 }
+
+                 */
+                for (BoardPrototype neighbor : current.neighbors(current)) {
+                    if (!closedMap.containsKey(neighbor)) {
+                        System.out.println("Possibile soluzione");
+                        System.out.println("G: " + neighbor.getG_n() + " Manhattan: " + neighbor.getManhattanDistance());
+                        printMatrix(neighbor);
+                        if (!openList.contains(neighbor)) {
+                            openList.add(neighbor);
+                        }
+                    }
+                }
+                closedMap.put(current, true);
             }
             iterations++;
         }

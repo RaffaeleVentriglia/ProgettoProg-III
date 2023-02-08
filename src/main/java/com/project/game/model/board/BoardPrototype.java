@@ -157,8 +157,6 @@ public class BoardPrototype implements Prototype, Cloneable {
         copy.board[row1][col1].setG_n(g2_n + 1);
         copy.board[row2][col2].setG_n(g1_n + 1);
 
-        //copy.g_n += 1;
-
         return copy;
     }
 

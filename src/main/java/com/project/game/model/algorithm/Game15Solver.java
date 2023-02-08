@@ -57,6 +57,15 @@ public class Game15Solver {
                         if(!openList.contains(neighbor)) {
                             neighbor.setG_n(current.getG_n() + 1);
                             openList.add(neighbor);
+                        } else {
+                            var tmpList = (Arrays.asList(openList.toArray()));
+                            int ind = tmpList.indexOf(neighbor);
+                            BoardPrototype prova = (BoardPrototype) tmpList.get(ind);
+                            if(neighbor.getG_n() + 1 < prova.getG_n()) {
+                                openList.remove(neighbor);
+                                neighbor.setG_n(current.getG_n() + 1);
+                                openList.add(neighbor);
+                            }
                         }
                     }
                 }

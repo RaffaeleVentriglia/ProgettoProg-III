@@ -56,7 +56,7 @@ public class Game {
                 for(int j = 0; j < 4; j++) {
                     int value = num.get(index); // valore della casella all'interno di num alla posizione index
                     int index2 = i * 4 + j; // indice unidimensionale della casella presa da [i][j]
-                    boxes[i][j].setValue(num.get(index)); // setto il valore del box
+                    boxes[i][j].setValue(value); // setto il valore del box
                     boxes[i][j].setManhattanDistance(boxes[i][j].getManhattan(value,index2)); // chiamo la funzione per settare la distanza di Manhattan per ogni box
                     boxes[i][j].setInitialX(i); // imposto la x iniziale
                     boxes[i][j].setInitialY(j); // imposto la y iniziale

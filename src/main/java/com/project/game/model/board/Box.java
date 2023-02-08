@@ -127,10 +127,10 @@ public class Box implements Manhattan {
      */
     @Override
     public int getManhattan(int value, int index) {
-        int goalX = (value - 1) % 4;
-        int goalY = (value - 1) / 4;
-        int currentX = index % 4;
-        int currentY = index / 4;
+        int goalX = (value - 1) / 4;
+        int goalY = (value - 1) % 4;
+        int currentX = index / 4;
+        int currentY = index % 4;
         if (value == 0) {
             goalX = 3;
             goalY = 3;

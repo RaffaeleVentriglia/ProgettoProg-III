@@ -35,7 +35,7 @@ public class Game15Solver {
         while (!openList.isEmpty()) {
             BoardPrototype current = openList.poll();
             closeList.add(current);
-            //openList.clear();
+            openList.clear();
             System.out.println("G(N): " + current.getG_n());
             for(int i = 0; i < 4; i++) {
                 for(int j = 0; j < 4; j++) {
@@ -45,7 +45,7 @@ public class Game15Solver {
             }
             System.out.println();
             if (current.isSolved()) {
-                System.out.println("Soluzione trovata in xxxx iterazioni: ");
+                System.out.println("Soluzione trovata");
                 printMatrix(current);
                 return current;
             } else {

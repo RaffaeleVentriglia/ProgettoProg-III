@@ -21,13 +21,14 @@ public class BoardPrototype implements Prototype, Cloneable {
             cloned.board = new Box[board.length][board[0].length];
             for(int i = 0; i < 4; i++) {
                 for(int j = 0; j < 4; j++) {
-                    cloned.board[i][j] = new Box();
-                    cloned.board[i][j].setX(board[i][j].getX());
-                    cloned.board[i][j].setY(board[i][j].getY());
-                    cloned.board[i][j].setValue(board[i][j].getValue());
-                    cloned.board[i][j].setG_n(board[i][j].getG_n());
-                    cloned.board[i][j].setInitialX(board[i][j].getInitialX());
-                    cloned.board[i][j].setInitialY(board[i][j].getInitialY());
+                    cloned.board[i][j] = new BoxBuilder()
+                            .setX(board[i][j].getX())
+                            .setY(board[i][j].getY())
+                            .setValue(board[i][j].getValue())
+                            .setG_n(board[i][j].getG_n())
+                            .setInitialX(board[i][j].getInitialX())
+                            .setInitialY(board[i][j].getInitialY())
+                            .build();
                 }
             }
             return cloned;
@@ -107,15 +108,6 @@ public class BoardPrototype implements Prototype, Cloneable {
     }
 
     public int getG_n() {
-        /*
-        g_n = 0;
-        for(int i = 0; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
-                g_n += board[i][j].getG_n();
-            }
-        }
-
-         */
         return this.g_n;
     }
 

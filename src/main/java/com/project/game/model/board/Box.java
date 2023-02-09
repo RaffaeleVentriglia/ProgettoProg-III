@@ -1,8 +1,7 @@
 package com.project.game.model.board;
 
-/**
- * classe che rappresenta i singoli quadrati in cui saranno rappresentati i numeri
- */
+// Box box = new BoxBuilder().setX(0).setY(1).setValue(2).build();
+
 public class Box implements Manhattan {
     int manhattanDistance; // dal nodo corrente al nodo finale
     int g_n = 0; // dal nodo iniziale al nodo corrente
@@ -10,11 +9,16 @@ public class Box implements Manhattan {
     int x, y; // coordinate della box
     int initialX, initialY; // coordinate iniziali che non devono essere modificate
 
-    public Box() {
-        this.value = 0;
-        this.x = 0;
-        this.y = 0;
-        this.manhattanDistance = 0;
+    public Box() {}
+
+    public Box(BoxBuilder boxBuilder) {
+        this.value = boxBuilder.getValue();
+        this.x = boxBuilder.getX();
+        this.y = boxBuilder.getY();
+        this.initialX = boxBuilder.getInitialX();
+        this.initialY = boxBuilder.getInitialY();
+        this.g_n = boxBuilder.getG_n();
+        this.manhattanDistance = boxBuilder.getManhattanDistance();
     }
 
     /**

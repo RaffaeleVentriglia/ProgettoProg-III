@@ -41,6 +41,7 @@ public class DataBase {
         String username;
         String count;
         try {
+            observableList.clear();
             connection = DriverManager.getConnection(url);
             System.out.println("Connessione al database eseguita con successo.");
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT username, count FROM player ORDER BY count LIMIT 5");

@@ -56,8 +56,8 @@ public class GeneralScoreController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         countColumn.setCellValueFactory(new PropertyValueFactory<>("count"));
-        observableList.clear();
         observableList.addAll(db.getScore());
         score.setItems(observableList);
     }
+
 }

@@ -14,7 +14,7 @@
     </top>
     <center>
         <AnchorPane BorderPane.alignment="CENTER">
-            <TableView fx:id="score" layoutX="17.0" layoutY="13.0" mouseTransparent="true" prefHeight="197.0" prefWidth="462.0" stylesheets="@Style.css" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="13.0">
+            <TableView fx:id="score" layoutX="17.0" layoutY="13.0" mouseTransparent="true" prefHeight="203.0" prefWidth="462.0" stylesheets="@Style.css" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="13.0">
                 <columns>
                     <TableColumn fx:id="usernameColumn" editable="false" prefWidth="233.0" sortable="false" text="Username" />
                     <TableColumn fx:id="countColumn" editable="false" minWidth="0.0" prefWidth="227.0" sortable="false" text="Count" />

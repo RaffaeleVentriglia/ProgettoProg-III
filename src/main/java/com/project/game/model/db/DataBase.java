@@ -14,7 +14,7 @@ public class DataBase {
     // indirizzo url del database
     private final String url = "jdbc:sqlite:identifier.sqlite";
     // variabile utilizzata per la connessione
-    Connection con;
+    Connection connection;
 
     /**
      * costruttore privato per Singleton
@@ -41,23 +41,23 @@ public class DataBase {
         String username;
         String count;
         try {
-            con = DriverManager.getConnection(url);
+            connection = DriverManager.getConnection(url);
             System.out.println("Connessione al database eseguita con successo.");
-            PreparedStatement preparedStatement = con.prepareStatement("SELECT username, count FROM player ORDER BY count LIMIT 5");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT username, count FROM player ORDER BY count LIMIT 5");
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()) {
                 username = resultSet.getString(1);
                 count = resultSet.getString(2);
-                PlayerBean pp = new PlayerBean(username, count);
-                observableList.add(pp);
+                PlayerBean playerBean = new PlayerBean(username, count);
+                observableList.add(playerBean);
             }
             return observableList;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if(con != null)
-                    con.close();
+                if(connection != null)
+                    connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

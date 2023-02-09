@@ -1,8 +1,12 @@
 package com.project.game.controller;
 
 import com.project.game.MainPage;
+import com.project.game.model.board.Observable;
 import com.project.game.model.db.DataBase;
 import com.project.game.model.player.PlayerBean;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,6 +32,7 @@ public class GeneralScoreController implements Initializable {
     @FXML
     TableColumn<PlayerBean, Integer> countColumn;
     DataBase db = DataBase.getInstance();
+    ObservableList<PlayerBean> observableList = FXCollections.observableArrayList();
 
     /**
      * controllore del click sul bottone back
@@ -51,6 +56,8 @@ public class GeneralScoreController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         countColumn.setCellValueFactory(new PropertyValueFactory<>("count"));
-        score.setItems(db.getScore());
+        observableList.clear();
+        observableList.addAll(db.getScore());
+        score.setItems(observableList);
     }
 }

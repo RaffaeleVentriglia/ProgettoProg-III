@@ -6,8 +6,8 @@ CREATE TABLE player (
 );
 
 -- valori inseriti per fare dei test
-INSERT INTO player VALUES ("Raffaele", 10000);
-INSERT INTO player VALUES ("Giuseppe", 10200);
-INSERT INTO player VALUES ("Nicola", 16000);
-INSERT INTO player VALUES ("Salvatore", 10010);
-INSERT INTO player VALUES ("Giovanni", 10001);
+INSERT INTO player VALUES ("Raffaele", 5938);
+INSERT INTO player VALUES ("Giuseppe", 3928);
+INSERT INTO player VALUES ("Nicola", 2056);
+INSERT INTO player VALUES ("Salvatore", 1027);
+INSERT INTO player VALUES ("Giovanni", 250);

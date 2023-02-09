@@ -21,49 +21,49 @@
                         <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Pane fx:id="pane1" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Pane  prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="0" GridPane.rowIndex="0">
                             <Label text="1" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane2" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="1" GridPane.rowIndex="0">
                             <Label text="2" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane3" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="2" GridPane.rowIndex="0">
                             <Label text="3" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane4" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="3" GridPane.rowIndex="0">
                             <Label text="4" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane5" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="0" GridPane.rowIndex="1">
                             <Label text="5" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane6" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <Label text="6" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane7" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                             <Label text="7" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane8" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="3" GridPane.rowIndex="1">
                             <Label text="8" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane9" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="0" GridPane.rowIndex="2">
                             <Label text="9" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane10" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <Label text="10" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane11" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                             <Label text="11" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane12" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="3" GridPane.rowIndex="2">
                             <Label text="12" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane13" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="0" GridPane.rowIndex="3">
                             <Label text="13" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane14" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <Label text="14" layoutX="35" layoutY="32" />
                         </Pane>
-                        <Pane fx:id="pane15" prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Pane prefHeight="200" prefWidth="200" style="-fx-background-color: #FDCA40;" GridPane.columnIndex="2" GridPane.rowIndex="3">
                             <Label text="15" layoutX="35" layoutY="32" />
                         </Pane>
                         <Pane fx:id="pane16" prefHeight="200" prefWidth="200" style="-fx-background-color: antiquewhite;" GridPane.columnIndex="3" GridPane.rowIndex="3">

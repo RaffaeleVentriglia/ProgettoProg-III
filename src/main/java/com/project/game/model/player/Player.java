@@ -1,9 +1,6 @@
 package com.project.game.model.player;
 
-import com.project.game.model.db.DataBase;
-
 public class Player {
-    DataBase db = DataBase.getInstance();
     private static final PlayerBean player = new PlayerBean();
 
     /**
@@ -22,9 +19,5 @@ public class Player {
      */
     public static PlayerBean getInstance() {
         return player;
-    }
-
-    public void addVictory() {
-
     }
 }

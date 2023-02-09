@@ -4,8 +4,10 @@ import com.project.game.model.algorithm.Game15Solver;
 import com.project.game.model.board.BoardPrototype;
 import com.project.game.model.board.Box;
 import com.project.game.model.board.Observer;
+import com.project.game.model.db.DataBase;
+import com.project.game.model.player.Player;
+import com.project.game.model.player.PlayerBean;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,9 +15,9 @@ public class Game {
     private static Game game;
     public static BoardPrototype FifteenPuzzleBoard = new BoardPrototype();
     public Box[][] boxes = new Box[4][4];
-    private final List<Integer> num = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0);
-    private final ArrayList<Integer> finalList = new ArrayList<>();
     Game15Solver game15Solver = Game15Solver.getInstance();
+    DataBase db = DataBase.getInstance();
+    PlayerBean player = Player.getInstance();
 
     /**
      * costruttore privato per applicare Singleton
@@ -107,7 +109,7 @@ public class Game {
      * metodo che permette la risoluzione del puzzle
      * @param list ArrayList del gioco
      */
-    public void solve(BoardPrototype list) {
+    public List<BoardPrototype> solve(BoardPrototype list) {
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
                 System.out.print(list.board[i][j].getManhattanDistance() + " ");
@@ -115,25 +117,31 @@ public class Game {
             System.out.println();
         }
         System.out.println("Distance: " + FifteenPuzzleBoard.getManhattanDistance());
-        game15Solver.aStar(list);
+        List<BoardPrototype> cammino = game15Solver.aStar(list);
+        for(BoardPrototype boardPrototype : cammino) {
+            System.out.println("G(n): " + boardPrototype.getG_n() + ", Manhattan Distance: " + boardPrototype.getManhattanDistance());
+            for(int i = 0; i < 4; i++) {
+                for(int j = 0; j < 4; j++) {
+                    System.out.print(list.board[i][j].getManhattanDistance() + " ");
+                }
+                System.out.println();
+            }
+            printMatrix(boardPrototype);
+            System.out.println();
+        }
+        return cammino;
     }
 
     /**
-     * metodo che permette di controllare se il puzzle è completato
-     * @return true se risolto, false se non è risolto
+     * metodo che permette di stampare l'intera matrice
+     * @param matrix da stampare
      */
-    public boolean isFinished() {
-        finalList.addAll(num);
-        int count = 0;
+    public static void printMatrix(BoardPrototype matrix) {
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
-                if(FifteenPuzzleBoard.board[i][j].getValue() == finalList.get(count)) {
-                    count++;
-                } else {
-                    break;
-                }
+                System.out.print(matrix.board[i][j].getValue() + " ");
             }
+            System.out.println();
         }
-        return count == 16;
     }
 }

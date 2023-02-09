@@ -7,6 +7,7 @@ public class BoxBuilder {
     private int initialX;
     private int initialY;
     private int g_n;
+    private int manhattanDistance;
 
     public BoxBuilder setX(int x) {
         this.x = x;
@@ -37,6 +38,10 @@ public class BoxBuilder {
         this.g_n = g_n;
         return this;
     }
+    public BoxBuilder setManhattanDistance(int manhattanDistance) {
+        this.manhattanDistance = manhattanDistance;
+        return this;
+    }
 
     public Box build() {
         Box box = new Box();
@@ -46,6 +51,7 @@ public class BoxBuilder {
         box.setInitialX(initialX);
         box.setInitialY(initialY);
         box.setG_n(g_n);
+        box.setManhattanDistance(manhattanDistance);
         return box;
     }
 }

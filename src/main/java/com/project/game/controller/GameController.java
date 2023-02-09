@@ -1,6 +1,7 @@
 package com.project.game.controller;
 
 import com.project.game.MainPage;
+import com.project.game.model.board.BoardPrototype;
 import com.project.game.model.game.Game;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,41 +17,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 import static com.project.game.controller.HomeController.root2;
 import static com.project.game.model.game.Game.FifteenPuzzleBoard;
 
 public class GameController {
-    @FXML
-    Pane pane1;
-    @FXML
-    Pane pane2;
-    @FXML
-    Pane pane3;
-    @FXML
-    Pane pane4;
-    @FXML
-    Pane pane5;
-    @FXML
-    Pane pane6;
-    @FXML
-    Pane pane7;
-    @FXML
-    Pane pane8;
-    @FXML
-    Pane pane9;
-    @FXML
-    Pane pane10;
-    @FXML
-    Pane pane11;
-    @FXML
-    Pane pane12;
-    @FXML
-    Pane pane13;
-    @FXML
-    Pane pane14;
-    @FXML
-    Pane pane15;
     @FXML
     Pane pane16;
     @FXML
@@ -79,7 +51,10 @@ public class GameController {
      */
     @FXML
     protected void solveClickHandler() {
-        game.solve(FifteenPuzzleBoard);
+        List<BoardPrototype> boardPrototypeList = game.solve(FifteenPuzzleBoard);
+        for(BoardPrototype boardPrototype : boardPrototypeList) {
+            updateBoard(boardPrototype);
+        }
     }
 
     /**
@@ -112,5 +87,27 @@ public class GameController {
         }
         generateButton.setDisable(true);
         solveButton.setDisable(false);
+    }
+
+    private void updateBoard(BoardPrototype boardPrototype) {
+        int index = 0;
+        ObservableList<Node> children1 = ((GridPane) root2.lookup("#mainPane")).getChildren();
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                //Recupero il valore della cella nella posizione i, j
+                int value = boardPrototype.board[i][j].getValue();
+                //recupero il pannello su cui scrivere
+                Pane child = (Pane) children1.get(index);
+                Label child2 = (Label) child.getChildren().get(0);
+                if(value == 0) {
+                    child2.setText(" ");
+                    child.setBackground(Background.fill(Color.ANTIQUEWHITE));
+                } else {
+                    child.setBackground(Background.fill(Color.rgb(253,202,64)));
+                    child2.setText(String.valueOf(value));
+                }
+                index++;
+            }
+        }
     }
 }

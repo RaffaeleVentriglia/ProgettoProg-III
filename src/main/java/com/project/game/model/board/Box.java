@@ -155,5 +155,6 @@ public class Box extends Observable implements Manhattan, Observer {
         this.setG_n(this.g_n);
         this.setX(this.x);
         this.setY(this.y);
+        this.setManhattanDistance(this.manhattanDistance);
     }
 }

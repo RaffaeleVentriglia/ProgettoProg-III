@@ -31,8 +31,8 @@ public class HomeController {
      */
     @FXML
     protected void startGameClickHandler() {
-        String temp = usernameField.getText();
-        if(temp.isEmpty()) {
+        String username = usernameField.getText();
+        if(username.isEmpty()) {
             errorInsert.setOpacity(1.0);
         } else {
             try {
@@ -40,7 +40,7 @@ public class HomeController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            player.setUsername(temp);
+            player.setUsername(username);
             Stage window = (Stage) startGameButton.getScene().getWindow();
             window.setScene(new Scene(root2,500,350));
         }

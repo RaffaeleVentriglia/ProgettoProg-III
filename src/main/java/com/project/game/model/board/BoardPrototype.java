@@ -28,6 +28,7 @@ public class BoardPrototype implements Prototype, Cloneable {
                             .setG_n(board[i][j].getG_n())
                             .setInitialX(board[i][j].getInitialX())
                             .setInitialY(board[i][j].getInitialY())
+                            .setManhattanDistance(board[i][j].getManhattanDistance())
                             .build();
                 }
             }
@@ -80,6 +81,10 @@ public class BoardPrototype implements Prototype, Cloneable {
         this.board = board;
     }
 
+    public void setManhattanDistance(int manhattanDistance) {
+        this.manhattanDistance = manhattanDistance;
+    }
+
     /**
      * metodo che ritorna la distanza di Manhattan dell'intera board
      * @return distanza di Manhattan
@@ -125,31 +130,25 @@ public class BoardPrototype implements Prototype, Cloneable {
         int row2 = index2 / 4;
         int col2 = index2 % 4;
 
-        // initialX e initialY dei due elementi da scambiare
-        int initialX1 = copy.board[row1][col1].getInitialX();
-        int initialX2 = copy.board[row2][col2].getInitialX();
-        int initialY1 = copy.board[row1][col1].getInitialY();
-        int initialY2 = copy.board[row2][col2].getInitialY();
-
-        // g(n) delle due board
-        int g1_n = copy.board[row1][col1].getG_n();
-        int g2_n = copy.board[row2][col2].getG_n();
+        // setto le distanze di Manhattan dopo averle calcolate
+        copy.board[row1][col1].setManhattanDistance(copy.board[row1][col1].getManhattan(index2, copy.board[row1][col1].getValue()));
+        copy.board[row2][col2].setManhattanDistance(copy.board[row2][col2].getManhattan(index1, copy.board[row2][col2].getValue()));
 
         // swap dei valori presenti nei box
         copy.board[row1][col1].setValue(copy.board[row2][col2].getValue());
         copy.board[row2][col2].setValue(0);
 
         // swap dei valori della initialX e initialY delle due box
-        copy.board[row1][col1].setInitialX(initialX2);
-        copy.board[row2][col2].setInitialX(initialX1);
-        copy.board[row1][col1].setInitialY(initialY2);
-        copy.board[row2][col2].setInitialY(initialY1);
+        copy.board[row1][col1].setInitialX(copy.board[row2][col2].getInitialX());
+        copy.board[row2][col2].setInitialX(copy.board[row1][col1].getInitialX());
+        copy.board[row1][col1].setInitialY(copy.board[row2][col2].getInitialY());
+        copy.board[row2][col2].setInitialY(copy.board[row1][col1].getInitialY());
 
         // swap dei valori di g(n)
-        copy.board[row1][col1].setG_n(g2_n + 1);
-        copy.board[row2][col2].setG_n(g1_n + 1);
+        copy.board[row1][col1].setG_n(copy.board[row2][col2].getG_n() + 1);
+        copy.board[row2][col2].setG_n(copy.board[row1][col1].getG_n() + 1);
 
-        // vengono aggiornati i dati degli observer
+        // update degli observer
         copy.board[row1][col1].update();
         copy.board[row2][col2].update();
 
@@ -171,44 +170,31 @@ public class BoardPrototype implements Prototype, Cloneable {
         if (row > 0) {
             BoardPrototype cloned = (BoardPrototype) board.clone();
             cloned = cloned.swap(blankIndex, blankIndex - 4);
-            calculateManhattanAndAdd(neighbors, cloned);
+            cloned.setManhattanDistance(cloned.getManhattanDistance());
+            neighbors.add(cloned);
         }
         // verifica se il blank può spostarsi a sinistra
         if (col > 0) {
             BoardPrototype cloned = (BoardPrototype) board.clone();
             cloned = cloned.swap(blankIndex, blankIndex - 1);
-            calculateManhattanAndAdd(neighbors, cloned);
+            cloned.setManhattanDistance(cloned.getManhattanDistance());
+            neighbors.add(cloned);
         }
         // verifica se il blank può spostarsi in basso
         if (row < 3) {
             BoardPrototype cloned = (BoardPrototype) board.clone();
             cloned = cloned.swap(blankIndex, blankIndex + 4);
-            calculateManhattanAndAdd(neighbors, cloned);
+            cloned.setManhattanDistance(cloned.getManhattanDistance());
+            neighbors.add(cloned);
         }
         // verifica se il blank può spostarsi a destra
         if (col < 3) {
             BoardPrototype cloned = (BoardPrototype) board.clone();
             cloned = cloned.swap(blankIndex, blankIndex + 1);
-            calculateManhattanAndAdd(neighbors, cloned);
+            cloned.setManhattanDistance(cloned.getManhattanDistance());
+            neighbors.add(cloned);
         }
         return neighbors;
-    }
-
-    /**
-     * metodo che ricalcola la distanza di Manhattan della board
-     * e aggiunge il vicino all'ArrayList in cui vengono
-     * memorizzati tutti i possibili vicini
-     * @param neighbors ArrayList in cui vengono salvati tutti i vicini
-     * @param cloned Board clonata con operazione di swap già effettuata
-     */
-    private void calculateManhattanAndAdd(ArrayList<BoardPrototype> neighbors, BoardPrototype cloned) {
-        for(int i = 0; i < 4; ++i) {
-            for(int j = 0; j < 4; ++j) {
-                int index = i * 4 + j;
-                cloned.board[i][j].setManhattanDistance(cloned.board[i][j].getManhattan(cloned.board[i][j].getValue(), index));
-            }
-        }
-        neighbors.add(cloned);
     }
 
     /**

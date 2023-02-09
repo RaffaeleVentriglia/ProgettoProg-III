@@ -60,8 +60,8 @@ public class Game15Solver {
                         } else {
                             var tmpList = (Arrays.asList(openList.toArray()));
                             int ind = tmpList.indexOf(neighbor);
-                            BoardPrototype prova = (BoardPrototype) tmpList.get(ind);
-                            if(neighbor.getG_n() + 1 < prova.getG_n()) {
+                            BoardPrototype boardPrototype = (BoardPrototype) tmpList.get(ind);
+                            if(neighbor.getG_n() + 1 < boardPrototype.getG_n()) {
                                 openList.remove(neighbor);
                                 neighbor.setG_n(current.getG_n() + 1);
                                 openList.add(neighbor);

@@ -3,6 +3,7 @@ package com.project.game.model.game;
 import com.project.game.model.algorithm.Game15Solver;
 import com.project.game.model.board.BoardPrototype;
 import com.project.game.model.board.Box;
+import com.project.game.model.board.Observer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,6 +43,9 @@ public class Game {
                 boxes[i][j] = new Box();
                 boxes[i][j].setX(i);
                 boxes[i][j].setY(j);
+
+                Observer observer = new Box();
+                boxes[i][j].registerObserver(observer);
             }
         }
         FifteenPuzzleBoard.setBoard(boxes);

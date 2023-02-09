@@ -7,7 +7,6 @@ public class BoxBuilder {
     private int initialX;
     private int initialY;
     private int g_n;
-    private int manhattanDistance;
 
     public BoxBuilder setX(int x) {
         this.x = x;
@@ -39,39 +38,6 @@ public class BoxBuilder {
         return this;
     }
 
-    public BoxBuilder setManhattanDistance(int manhattanDistance) {
-        this.manhattanDistance = manhattanDistance;
-        return this;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public int getInitialX() {
-        return initialX;
-    }
-
-    public int getInitialY() {
-        return initialY;
-    }
-
-    public int getG_n() {
-        return g_n;
-    }
-
-    public int getManhattanDistance() {
-        return manhattanDistance;
-    }
-
     public Box build() {
         Box box = new Box();
         box.setX(x);
@@ -80,7 +46,6 @@ public class BoxBuilder {
         box.setInitialX(initialX);
         box.setInitialY(initialY);
         box.setG_n(g_n);
-        box.setManhattanDistance(manhattanDistance);
         return box;
     }
 }

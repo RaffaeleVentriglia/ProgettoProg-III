@@ -1,8 +1,6 @@
 package com.project.game.model.board;
 
-// Box box = new BoxBuilder().setX(0).setY(1).setValue(2).build();
-
-public class Box implements Manhattan {
+public class Box extends Observable implements Manhattan, Observer {
     int manhattanDistance; // dal nodo corrente al nodo finale
     int g_n = 0; // dal nodo iniziale al nodo corrente
     int value; // valore contenuto nella box
@@ -33,6 +31,7 @@ public class Box implements Manhattan {
      */
     public void setX(int x) {
         this.x = x;
+        notifyObservers();
     }
 
     /**
@@ -41,6 +40,7 @@ public class Box implements Manhattan {
      */
     public void setY(int y) {
         this.y = y;
+        notifyObservers();
     }
 
     /**
@@ -57,6 +57,7 @@ public class Box implements Manhattan {
      */
     public void setValue(int value) {
         this.value = value;
+        notifyObservers();
     }
 
     /**
@@ -73,6 +74,7 @@ public class Box implements Manhattan {
      */
     public void setG_n(int g_n) {
         this.g_n = g_n;
+        notifyObservers();
     }
 
     /**
@@ -97,6 +99,7 @@ public class Box implements Manhattan {
      */
     public void setInitialX(int initialX) {
         this.initialX = initialX;
+        notifyObservers();
     }
 
     /**
@@ -105,6 +108,7 @@ public class Box implements Manhattan {
      */
     public void setInitialY(int initialY) {
         this.initialY = initialY;
+        notifyObservers();
     }
 
     /**
@@ -113,6 +117,7 @@ public class Box implements Manhattan {
      */
     public void setManhattanDistance(int manhattanDistance) {
         this.manhattanDistance = manhattanDistance;
+        notifyObservers();
     }
 
     /**
@@ -138,5 +143,17 @@ public class Box implements Manhattan {
      */
     public int getManhattanDistance() {
         return manhattanDistance;
+    }
+
+    /**
+     * override del metodo update per implementare
+     * il desgin pattern Observer
+     */
+    @Override
+    public void update() {
+        this.setValue(this.value);
+        this.setG_n(this.g_n);
+        this.setX(this.x);
+        this.setY(this.y);
     }
 }

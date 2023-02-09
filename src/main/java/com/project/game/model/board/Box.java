@@ -11,16 +11,6 @@ public class Box implements Manhattan {
 
     public Box() {}
 
-    public Box(BoxBuilder boxBuilder) {
-        this.value = boxBuilder.getValue();
-        this.x = boxBuilder.getX();
-        this.y = boxBuilder.getY();
-        this.initialX = boxBuilder.getInitialX();
-        this.initialY = boxBuilder.getInitialY();
-        this.g_n = boxBuilder.getG_n();
-        this.manhattanDistance = boxBuilder.getManhattanDistance();
-    }
-
     /**
      * metodo get per x
      * @return x

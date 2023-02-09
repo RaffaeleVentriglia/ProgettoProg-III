@@ -45,15 +45,17 @@ public class BoardPrototype implements Prototype, Cloneable {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        BoardPrototype that = (BoardPrototype) o;
-        for(int i = 0; i < 4; ++i) {
-            for(int j = 0; j < 4; ++j) {
-                if(board[i][j].getValue() != that.board[i][j].getValue())
-                    return false;
+        if (o instanceof BoardPrototype that) {
+            for (int i = 0; i < 4; ++i) {
+                for (int j = 0; j < 4; ++j) {
+                    if (board[i][j].getValue() != that.board[i][j].getValue())
+                        return false;
+                }
             }
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 
     @Override
@@ -66,27 +68,11 @@ public class BoardPrototype implements Prototype, Cloneable {
     }
 
     /**
-     * metodo get per board
-     * @return board
-     */
-    public Box[][] getBoard() {
-        return board;
-    }
-
-    /**
      * metodo set per board
      * @param board composta da Box[][]
      */
     public void setBoard(Box[][] board) {
         this.board = board;
-    }
-
-    /**
-     * metodo set per manhattanDistance
-     * @param manhattanDistance distanza di Manhattan
-     */
-    public void setManhattanDistance(int manhattanDistance) {
-        this.manhattanDistance = manhattanDistance;
     }
 
     /**

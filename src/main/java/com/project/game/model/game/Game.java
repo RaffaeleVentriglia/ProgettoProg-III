@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Game {
     private static Game game;
-    public static BoardPrototype boardPrototype = new BoardPrototype();
+    public static BoardPrototype FifteenPuzzleBoard = new BoardPrototype();
     public Box[][] boxes = new Box[4][4];
     private final List<Integer> num = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0);
     private final ArrayList<Integer> finalList = new ArrayList<>();
@@ -44,7 +44,7 @@ public class Game {
                 boxes[i][j].setY(j);
             }
         }
-        boardPrototype.setBoard(boxes);
+        FifteenPuzzleBoard.setBoard(boxes);
         for(boolean isSolvable = false; !isSolvable;) {
             ArrayList<Integer> num = new ArrayList<>(16);
             for(int i = 0; i < 16; i++) {
@@ -63,9 +63,9 @@ public class Game {
                     index++;
                 }
             }
-            isSolvable = isSolvable(boardPrototype); // controllo se la lista è risolvibile
+            isSolvable = isSolvable(FifteenPuzzleBoard); // controllo se la lista è risolvibile
         }
-        return boardPrototype;
+        return FifteenPuzzleBoard;
     }
 
     /**
@@ -110,7 +110,7 @@ public class Game {
             }
             System.out.println();
         }
-        System.out.println("Distance: " + boardPrototype.getManhattanDistance());
+        System.out.println("Distance: " + FifteenPuzzleBoard.getManhattanDistance());
         game15Solver.aStar(list);
     }
 
@@ -123,7 +123,7 @@ public class Game {
         int count = 0;
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
-                if(boardPrototype.board[i][j].getValue() == finalList.get(count)) {
+                if(FifteenPuzzleBoard.board[i][j].getValue() == finalList.get(count)) {
                     count++;
                 } else {
                     break;

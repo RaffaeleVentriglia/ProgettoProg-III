@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 import static com.project.game.controller.HomeController.root2;
-import static com.project.game.model.game.Game.boardPrototype;
+import static com.project.game.model.game.Game.FifteenPuzzleBoard;
 
 public class GameController {
     @FXML
@@ -79,7 +79,7 @@ public class GameController {
      */
     @FXML
     protected void solveClickHandler() {
-        game.solve(boardPrototype);
+        game.solve(FifteenPuzzleBoard);
     }
 
     /**
@@ -87,13 +87,13 @@ public class GameController {
      */
     @FXML
     protected void generateClickHandler() {
-        boardPrototype = game.initializeBoard();
+        FifteenPuzzleBoard = game.initializeBoard();
         int index = 0;
         ObservableList<Node> children1 = ((GridPane) root2.lookup("#mainPane")).getChildren();
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 //Recupero il valore della cella nella posizione i, j
-                int value = boardPrototype.board[i][j].getValue();
+                int value = FifteenPuzzleBoard.board[i][j].getValue();
                 //recupero il pannello su cui scrivere
                 Pane child = (Pane) children1.get(index);
                 Label child2 = (Label) child.getChildren().get(0);
@@ -107,7 +107,7 @@ public class GameController {
                 index++;
             }
         }
-        if(boardPrototype.board[3][3].getValue() == 0) {
+        if(FifteenPuzzleBoard.board[3][3].getValue() == 0) {
             pane16.setBackground(Background.fill(Color.ANTIQUEWHITE));
         }
         generateButton.setDisable(true);

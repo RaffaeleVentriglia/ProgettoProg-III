@@ -134,7 +134,7 @@ public class Game {
             count = boardPrototype.g_n;
         }
         String username = player.username;
-        //db.addVictory(username, count);
+        db.addVictory(username, count);
         return cammino;
     }
 

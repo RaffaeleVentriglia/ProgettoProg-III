@@ -4,7 +4,7 @@ import com.project.game.model.board.BoardPrototype;
 
 import java.util.*;
 
-public class Game15Solver {
+public class Game15Solver extends BoardComparator {
     private static Game15Solver game15Solver;
     BoardComparator boardComparator = new BoardComparator();
 

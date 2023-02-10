@@ -120,7 +120,7 @@ public class Game {
             System.out.println();
         }
         System.out.println("Distance: " + FifteenPuzzleBoard.getManhattanDistance());
-        List<BoardPrototype> cammino = game15Solver.aStar(list);
+        List<BoardPrototype> cammino = game15Solver.AStar(list);
         for(BoardPrototype boardPrototype : cammino) {
             printMatrix(boardPrototype);
             System.out.println();

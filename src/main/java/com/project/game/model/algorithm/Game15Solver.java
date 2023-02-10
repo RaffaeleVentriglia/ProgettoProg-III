@@ -28,7 +28,7 @@ public class Game15Solver {
      * metodo che applica l'algoritmo A* con distanza di Manhattan
      * @param board configurazione su cui applicare l'algoritmo
      */
-    public List<BoardPrototype> aStar(BoardPrototype board) {
+    public List<BoardPrototype> AStar(BoardPrototype board) {
         PriorityQueue<BoardPrototype> openList = new PriorityQueue<>(boardComparator);
         List<BoardPrototype> closeList = new ArrayList<>();
         openList.add(board);

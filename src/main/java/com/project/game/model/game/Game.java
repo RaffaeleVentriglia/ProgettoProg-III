@@ -120,15 +120,15 @@ public class Game {
             System.out.println();
         }
         System.out.println("Distance: " + FifteenPuzzleBoard.getManhattanDistance());
-        List<BoardPrototype> cammino = game15Solver.AStar(list);
-        for(BoardPrototype boardPrototype : cammino) {
+        List<BoardPrototype> path = game15Solver.AStar(list);
+        for(BoardPrototype boardPrototype : path) {
             printMatrix(boardPrototype);
             System.out.println();
             count = boardPrototype.g_n;
         }
         String username = player.username;
         db.addVictory(username, count);
-        return cammino;
+        return path;
     }
 
     /**

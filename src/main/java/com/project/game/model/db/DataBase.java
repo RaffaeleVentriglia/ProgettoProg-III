@@ -65,14 +65,13 @@ public class DataBase {
         return observableList;
     }
 
-    public boolean addVictory(String username, int count) {
+    public void addVictory(String username, int count) {
         try {
             connection = DriverManager.getConnection(url);
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO player (username, count) VALUES (?,?)");
             preparedStatement.setString(1,username);
             preparedStatement.setInt(2,count);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.rowInserted();
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -84,6 +83,5 @@ public class DataBase {
                 e.printStackTrace();
             }
         }
-        return false;
     }
 }

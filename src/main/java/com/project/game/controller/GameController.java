@@ -55,6 +55,7 @@ public class GameController {
         for(BoardPrototype boardPrototype : boardPrototypeList) {
             updateBoard(boardPrototype);
         }
+        solveButton.setDisable(true);
     }
 
     /**

@@ -110,6 +110,7 @@ public class Game {
      * @param list ArrayList del gioco
      */
     public List<BoardPrototype> solve(BoardPrototype list) {
+        int count = 0;
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
                 System.out.print(list.board[i][j].getManhattanDistance() + " ");
@@ -128,7 +129,10 @@ public class Game {
             }
             printMatrix(boardPrototype);
             System.out.println();
+            count = boardPrototype.g_n;
         }
+        String username = player.username;
+        db.addVictory(username, count);
         return cammino;
     }
 

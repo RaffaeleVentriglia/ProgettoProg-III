@@ -65,6 +65,11 @@ public class DataBase {
         return observableList;
     }
 
+    /**
+     * metodo che permette di aggiungere la vittoria di una partita
+     * @param username dell'utente
+     * @param count dei passi effettuati per raggiungere la soluzione
+     */
     public void addVictory(String username, int count) {
         try {
             connection = DriverManager.getConnection(url);

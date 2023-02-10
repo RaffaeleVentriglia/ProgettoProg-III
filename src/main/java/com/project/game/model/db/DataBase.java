@@ -1,6 +1,5 @@
 package com.project.game.model.db;
 
-import com.project.game.model.player.Player;
 import com.project.game.model.player.PlayerBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Game15Solver {
     private static Game15Solver game15Solver;
-    ManhattanComparator manhattanComparator = new ManhattanComparator();
+    BoardComparator boardComparator = new BoardComparator();
 
     /**
      * costruttore privato per applicare il Singleton
@@ -29,7 +29,7 @@ public class Game15Solver {
      * @param board configurazione su cui applicare l'algoritmo
      */
     public List<BoardPrototype> aStar(BoardPrototype board) {
-        PriorityQueue<BoardPrototype> openList = new PriorityQueue<>(manhattanComparator);
+        PriorityQueue<BoardPrototype> openList = new PriorityQueue<>(boardComparator);
         List<BoardPrototype> closeList = new ArrayList<>();
         openList.add(board);
         while (!openList.isEmpty()) {

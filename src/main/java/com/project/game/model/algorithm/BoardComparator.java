@@ -3,7 +3,7 @@ package com.project.game.model.algorithm;
 import com.project.game.model.board.BoardPrototype;
 import java.util.Comparator;
 
-public class ManhattanComparator implements Comparator<BoardPrototype> {
+public class BoardComparator implements Comparator<BoardPrototype> {
     @Override
     public int compare(BoardPrototype board1, BoardPrototype board2) {
         int f1 = board1.getManhattanDistance() + board1.getG_n();

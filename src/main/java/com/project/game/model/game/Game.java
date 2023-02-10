@@ -3,6 +3,7 @@ package com.project.game.model.game;
 import com.project.game.model.algorithm.Game15Solver;
 import com.project.game.model.board.BoardPrototype;
 import com.project.game.model.board.Box;
+import com.project.game.model.board.BoxBuilder;
 import com.project.game.model.board.Observer;
 import com.project.game.model.db.DataBase;
 import com.project.game.model.player.Player;
@@ -42,10 +43,10 @@ public class Game {
     public BoardPrototype initializeBoard() {
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
-                boxes[i][j] = new Box();
-                boxes[i][j].setX(i);
-                boxes[i][j].setY(j);
-
+                boxes[i][j] = new BoxBuilder()
+                        .setX(i)
+                        .setY(j)
+                        .build();
                 Observer observer = new Box();
                 boxes[i][j].registerObserver(observer);
             }
@@ -66,6 +67,7 @@ public class Game {
                     boxes[i][j].setManhattanDistance(boxes[i][j].getManhattan(value,index2)); // chiamo la funzione per settare la distanza di Manhattan per ogni box
                     boxes[i][j].setInitialX(i); // imposto la x iniziale
                     boxes[i][j].setInitialY(j); // imposto la y iniziale
+                    boxes[i][j].update();
                     index++;
                 }
             }
@@ -132,7 +134,7 @@ public class Game {
             count = boardPrototype.g_n;
         }
         String username = player.username;
-        db.addVictory(username, count);
+        //db.addVictory(username, count);
         return cammino;
     }
 

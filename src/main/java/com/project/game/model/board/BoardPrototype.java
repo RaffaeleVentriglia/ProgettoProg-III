@@ -130,19 +130,24 @@ public class BoardPrototype implements Prototype, Cloneable {
         int row2 = index2 / 4;
         int col2 = index2 % 4;
 
-        // setto le distanze di Manhattan dopo averle calcolate
-        copy.board[row1][col1].setManhattanDistance(copy.board[row1][col1].getManhattan(index2, copy.board[row1][col1].getValue()));
-        copy.board[row2][col2].setManhattanDistance(copy.board[row2][col2].getManhattan(index1, copy.board[row2][col2].getValue()));
-
         // swap dei valori presenti nei box
         copy.board[row1][col1].setValue(copy.board[row2][col2].getValue());
         copy.board[row2][col2].setValue(0);
 
+        int initialX1 = copy.board[row1][col1].getInitialX();
+        int initialY1 = copy.board[row1][col1].getInitialY();
+        int initialX2 = copy.board[row2][col2].getInitialX();
+        int initialY2 = copy.board[row2][col2].getInitialY();
+
         // swap dei valori della initialX e initialY delle due box
-        copy.board[row1][col1].setInitialX(copy.board[row2][col2].getInitialX());
-        copy.board[row2][col2].setInitialX(copy.board[row1][col1].getInitialX());
-        copy.board[row1][col1].setInitialY(copy.board[row2][col2].getInitialY());
-        copy.board[row2][col2].setInitialY(copy.board[row1][col1].getInitialY());
+        copy.board[row1][col1].setInitialX(initialX2);
+        copy.board[row2][col2].setInitialX(initialX1);
+        copy.board[row1][col1].setInitialY(initialY2);
+        copy.board[row2][col2].setInitialY(initialY1);
+
+        // setto le distanze di Manhattan dopo averle calcolate
+        copy.board[row1][col1].setManhattanDistance(copy.board[row1][col1].getManhattan(index2, copy.board[row1][col1].getValue()));
+        copy.board[row2][col2].setManhattanDistance(copy.board[row2][col2].getManhattan(index1, copy.board[row2][col2].getValue()));
 
         // swap dei valori di g(n)
         copy.board[row1][col1].setG_n(copy.board[row2][col2].getG_n() + 1);

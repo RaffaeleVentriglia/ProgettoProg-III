@@ -122,13 +122,6 @@ public class Game {
         System.out.println("Distance: " + FifteenPuzzleBoard.getManhattanDistance());
         List<BoardPrototype> cammino = game15Solver.aStar(list);
         for(BoardPrototype boardPrototype : cammino) {
-            System.out.println("G(n): " + boardPrototype.getG_n() + ", Manhattan Distance: " + boardPrototype.getManhattanDistance());
-            for(int i = 0; i < 4; i++) {
-                for(int j = 0; j < 4; j++) {
-                    System.out.print(list.board[i][j].getManhattanDistance() + " ");
-                }
-                System.out.println();
-            }
             printMatrix(boardPrototype);
             System.out.println();
             count = boardPrototype.g_n;
